@@ -1,0 +1,1288 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>lowk3y english</title>
+<meta name="description" content="lowk3y english: сайт для изучения американского английского">
+<style>
+:root { padding-block: env(safe-area-inset-top, 0px) env(safe-area-inset-bottom, 0px); }
+body { margin: 0; font: 14px system-ui, sans-serif; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap">
+<style>
+/* Layout: floating glass panels drifting over a field of red and blue light. Pill nav floats at the top. */
+:root {
+  --bg: #0a0f22; --fg: #f1f4ff; --muted: #a9b5d6;
+  --red: #f0566a; --blue: #4d7bff;
+  --accent: #6b92ff; --accent-fg: #0a0f22;
+  --glass: rgba(255, 255, 255, 0.08); --glass-strong: rgba(255, 255, 255, 0.14);
+  --glass-edge: rgba(255, 255, 255, 0.28); --glass-shadow: rgba(0, 0, 0, 0.45);
+  --line: rgba(255, 255, 255, 0.14); --blob-op: 0.3;
+  color-scheme: dark;
+  --font-head: "Oswald", "Arial Narrow", Impact, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+:root[data-theme="light"] {
+  --bg: #eef2fb; --fg: #101a38; --muted: #4b5878;
+  --red: #e8485b; --blue: #2a5bff;
+  --accent: #2a5bff; --accent-fg: #ffffff;
+  --glass: rgba(255, 255, 255, 0.46); --glass-strong: rgba(255, 255, 255, 0.66);
+  --glass-edge: rgba(255, 255, 255, 0.85); --glass-shadow: rgba(30, 50, 120, 0.18);
+  --line: rgba(16, 26, 56, 0.12); --blob-op: 0.38;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 56px;
+  position: relative; overflow-x: hidden;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+h1, h2, h3 { font-family: var(--font-head); line-height: 1.12; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+p { margin: 0; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+/* drifting colour field behind the glass */
+.field { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: var(--blob-op); will-change: transform; }
+.blob.r { width: 46vmax; height: 46vmax; background: var(--red); top: -14vmax; left: -12vmax; animation: drift1 26s ease-in-out infinite alternate; }
+.blob.y { width: 38vmax; height: 38vmax; background: color-mix(in srgb, var(--blue) 45%, #fff); top: 30vh; right: -12vmax; animation: drift2 30s ease-in-out infinite alternate; }
+.blob.b { width: 50vmax; height: 50vmax; background: var(--blue); bottom: -20vmax; left: 20vw; animation: drift3 34s ease-in-out infinite alternate; }
+@keyframes drift1 { to { transform: translate(18vw, 14vh) scale(1.12); } }
+@keyframes drift2 { to { transform: translate(-16vw, -10vh) scale(0.92); } }
+@keyframes drift3 { to { transform: translate(14vw, -16vh) scale(1.08); } }
+
+.wrap { max-width: 980px; margin: 0 auto; position: relative; z-index: 1; }
+
+/* liquid glass surface */
+.glass {
+  position: relative;
+  background: linear-gradient(145deg, var(--glass-strong), var(--glass) 55%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(1.08);
+  backdrop-filter: blur(28px) saturate(200%) brightness(1.08);
+  border: 1px solid color-mix(in srgb, var(--glass-edge) 45%, transparent);
+  border-radius: 24px;
+  box-shadow:
+    0 24px 50px -14px var(--glass-shadow),
+    0 2px 6px rgba(0, 0, 0, 0.06),
+    inset 0 2px 1px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 6px rgba(255, 255, 255, 0.22),
+    inset 14px 0 24px -16px rgba(255, 255, 255, 0.55),
+    inset -14px 0 24px -16px rgba(255, 255, 255, 0.3),
+    inset 0 0 30px rgba(255, 255, 255, 0.1);
+}
+/* glass rim: a lit edge that fades around the panel */
+.glass::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.08) 32%, rgba(255, 255, 255, 0.04) 62%, rgba(255, 255, 255, 0.7));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+.glass::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background:
+    radial-gradient(120% 60% at 14% -12%, rgba(255, 255, 255, 0.6), transparent 55%),
+    radial-gradient(70% 45% at 100% 112%, rgba(255, 255, 255, 0.28), transparent 62%);
+  opacity: 0.7;
+}
+.glass > * { position: relative; z-index: 1; }
+
+/* floating motion */
+.float { animation: bob 7s ease-in-out infinite; }
+.float.d1 { animation-delay: -1.6s; animation-duration: 8.5s; }
+.float.d2 { animation-delay: -3.2s; animation-duration: 7.5s; }
+.float.d3 { animation-delay: -4.8s; animation-duration: 9s; }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+/* floating pill nav */
+header.top { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 10px); z-index: 20; margin-top: 10px; }
+.pill { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; padding: 10px 14px 10px 20px; border-radius: 999px; }
+.logo { font-family: var(--font-head); font-weight: 700; font-size: 1.2rem; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
+nav { display: flex; gap: 4px; flex-wrap: wrap; font-size: 0.93rem; }
+nav a { color: var(--fg); text-decoration: none; padding: 7px 14px; border-radius: 999px; font-weight: 500; }
+nav a:hover { background: var(--glass-strong); }
+.theme-btn { background: var(--glass-strong); color: var(--fg); border: 1px solid var(--glass-edge); border-radius: 999px; padding: 7px 16px; font-size: 0.88rem; font-weight: 600; box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, 0.5); transition: transform .18s; }
+.flag { width: 24px; height: 13px; border-radius: 2px; opacity: 0.5; flex: none; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2); }
+.eyebrow.row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+footer .fl { display: inline-flex; align-items: center; gap: 10px; }
+footer a { color: var(--fg); font-weight: 600; text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+.official { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 8px; }
+.links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+.btn.sm { padding: 9px 16px; font-size: 0.9rem; }
+.pill { gap: 8px 10px; padding-right: 12px; }
+nav a { padding: 7px 10px; }
+.sub-head { margin-top: 48px; }
+.btn.tt { display: inline-flex; align-items: center; gap: 10px; background: var(--glass-strong); color: var(--fg); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border-color: var(--glass-edge); box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, 0.6), -5px 0 16px -8px var(--red), 5px 0 16px -8px var(--blue); }
+.btn.tt svg { width: 18px; height: 18px; flex: none; }
+.theme-btn:hover { transform: translateY(-2px); }
+a.logo { color: inherit; text-decoration: none; }
+nav a[aria-current="page"] { background: var(--glass-strong); box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, 0.5); }
+.view:not([hidden]) { animation: viewin .35s ease both; }
+@keyframes viewin { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.passage { background: var(--glass); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; margin: 10px 0 14px; font-size: 0.95rem; line-height: 1.55; }
+.note { margin-top: 18px; max-width: 640px; color: var(--muted); font-size: 0.88rem; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px; padding-bottom: 24px; }
+.tile { display: block; padding: 22px; border-radius: 22px; color: inherit; text-decoration: none; transition: transform .2s; min-width: 0; }
+.tile:hover { transform: translateY(-5px); }
+.tile b { font-family: var(--font-head); font-size: 1.15rem; display: block; }
+.tile span { color: var(--muted); font-size: 0.93rem; }
+
+.hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 44px; align-items: center; padding-block: 56px 48px; position: relative; }
+.hero h1 { font-size: clamp(2.3rem, 6.4vw, 3.8rem); letter-spacing: -0.025em; }
+.hero h1 em { font-style: normal; background: linear-gradient(transparent 62%, color-mix(in srgb, var(--accent) 45%, transparent) 62%); padding: 0 4px; margin: 0 -4px; }
+.hero p.lead { margin-top: 18px; color: var(--muted); font-size: 1.1rem; max-width: 46ch; }
+.cta-row { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+.btn {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 80%, #fff), var(--accent));
+  color: var(--accent-fg); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 999px; padding: 13px 24px;
+  font-weight: 600; text-decoration: none; display: inline-block;
+  box-shadow: 0 10px 24px -8px color-mix(in srgb, var(--accent) 70%, transparent), inset 0 1.5px 0 rgba(255, 255, 255, 0.55);
+  transition: transform .18s, box-shadow .18s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn.ghost { background: var(--glass); color: var(--fg); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border-color: var(--glass-edge); box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, 0.6); }
+
+.wotd { padding: 28px; min-width: 0; }
+.eyebrow { font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); font-weight: 600; }
+.wotd .word { font-family: var(--font-head); font-size: 2.5rem; font-weight: 700; margin-top: 8px; overflow-wrap: anywhere; }
+.wotd .ipa { color: var(--muted); font-size: 0.95rem; }
+.wotd .tr { margin-top: 10px; font-weight: 600; font-size: 1.1rem; }
+.wotd .ex { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); }
+
+section { padding-block: 44px; scroll-margin-top: 90px; }
+.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+.sec-head p { color: var(--muted); max-width: 52ch; margin-top: 8px; }
+
+.chips { display: flex; gap: 6px; flex-wrap: wrap; padding: 6px; border-radius: 999px; }
+.chip { background: transparent; border: 0; border-radius: 999px; padding: 7px 16px; font-size: 0.9rem; font-weight: 600; }
+.chip[aria-pressed="true"] { background: var(--accent); color: var(--accent-fg); box-shadow: 0 6px 14px -6px color-mix(in srgb, var(--accent) 80%, #000), inset 0 1.5px 0 rgba(255,255,255,.5); }
+
+.deck { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; max-width: 520px; }
+.card { min-height: 240px; padding: 30px; display: flex; flex-direction: column; justify-content: center; text-align: left; width: 100%; color: var(--fg); }
+.card .lvl { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; color: var(--accent); }
+.card .big { font-family: var(--font-head); font-size: 2.1rem; font-weight: 700; margin-top: 6px; overflow-wrap: anywhere; }
+.card .sub { color: var(--muted); margin-top: 10px; }
+.card .hint { margin-top: 20px; font-size: 0.85rem; color: var(--muted); }
+.deck-bar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.deck-bar .count { margin-left: auto; color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+.mini { background: var(--glass); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border: 1px solid var(--glass-edge); border-radius: 999px; padding: 9px 18px; font-weight: 600; box-shadow: inset 0 1.5px 0 rgba(255,255,255,.6); transition: transform .18s; }
+.mini:hover { transform: translateY(-2px); }
+.mini.ok { background: var(--red); color: #fff; border-color: rgba(255,255,255,.5); }
+
+.quiz { padding: 28px; max-width: 640px; }
+.quiz .q { font-family: var(--font-head); font-size: 1.4rem; margin: 8px 0 18px; }
+.opts { display: grid; gap: 10px; }
+.opt { text-align: left; background: var(--glass); border: 1px solid var(--glass-edge); border-radius: 16px; padding: 13px 18px; font-weight: 500; box-shadow: inset 0 1.5px 0 rgba(255,255,255,.5); transition: transform .18s; }
+.opt:hover:not(:disabled) { transform: translateX(4px); border-color: var(--accent); }
+.opt:disabled { cursor: default; color: var(--fg); }
+.opt.right { background: color-mix(in srgb, var(--blue) 26%, transparent); border-color: var(--blue); }
+.opt.wrong { background: color-mix(in srgb, var(--red) 26%, transparent); border-color: var(--red); }
+.explain { margin-top: 16px; color: var(--muted); min-height: 3.2em; }
+.quiz-foot { display: flex; align-items: center; gap: 14px; margin-top: 14px; flex-wrap: wrap; }
+.progress { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; margin-bottom: 16px; }
+.progress i { display: block; height: 100%; background: linear-gradient(90deg, var(--red), var(--blue)); width: 0; transition: width .3s; border-radius: 99px; }
+
+.tips { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.tip { padding: 22px; min-width: 0; border-radius: 22px; }
+.tip h3 { font-size: 1.1rem; margin-bottom: 8px; }
+.tip p { color: var(--muted); font-size: 0.95rem; }
+.tip code { display: block; margin-top: 12px; font-family: var(--font-body); font-size: 0.92rem; background: var(--glass); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; overflow-wrap: anywhere; }
+
+.week { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; }
+.day { padding: 18px; min-width: 0; border-radius: 20px; }
+.day b { font-family: var(--font-head); display: block; margin-bottom: 4px; font-size: 1.1rem; }
+.day span { color: var(--muted); font-size: 0.92rem; display: block; }
+.day small { display: inline-block; margin-top: 10px; padding: 3px 10px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 28%, transparent); color: var(--fg); font-weight: 700; font-variant-numeric: tabular-nums; font-size: 0.8rem; }
+
+footer { margin-top: 24px; padding: 18px 24px; color: var(--muted); font-size: 0.9rem; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-radius: 999px; }
+
+@media (max-width: 760px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 30px; padding-top: 36px; }
+  .pill { border-radius: 28px; padding: 12px 16px; }
+  footer { border-radius: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .float, .blob, .view:not([hidden]) { animation: none; }
+  .btn, .mini, .opt, .theme-btn, .progress i { transition: none; }
+}
+/* American look: varsity type, stars and stripes */
+h1, h2 { text-transform: uppercase; letter-spacing: 0.02em; }
+.hero h1 { font-size: clamp(2.3rem, 6.6vw, 4.1rem); font-weight: 700; line-height: 1.04; letter-spacing: 0.01em; }
+h2 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); font-weight: 700; }
+h2::before { content: "★"; color: var(--red); font-size: 0.55em; margin-right: 0.55em; vertical-align: 0.22em; }
+h3 { letter-spacing: 0.03em; font-weight: 600; }
+.logo { text-transform: none; letter-spacing: 0.03em; font-size: 1.3rem; }
+nav a, .btn, .theme-btn, .chip, .mini { font-family: var(--font-head); text-transform: uppercase; letter-spacing: 0.07em; }
+nav a { font-weight: 500; font-size: 0.9rem; }
+.btn { font-weight: 600; }
+.usa-tag { font-family: var(--font-head); text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.8rem; color: var(--muted); margin-bottom: 14px; }
+.usa-tag b { color: var(--red); letter-spacing: 0.3em; font-weight: 500; }
+.field::before {
+  content: ""; position: absolute; inset: 0; background: var(--fg); opacity: 0.06;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cpath d='M24 10l3.5 10.8h11.3l-9.2 6.7 3.5 10.8-9.1-6.7-9.1 6.7 3.5-10.8-9.2-6.7h11.3z'/%3E%3Cpath d='M72 58l2.6 8h8.4l-6.8 5 2.6 8-6.8-5-6.8 5 2.6-8-6.8-5h8.4z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cpath d='M24 10l3.5 10.8h11.3l-9.2 6.7 3.5 10.8-9.1-6.7-9.1 6.7 3.5-10.8-9.2-6.7h11.3z'/%3E%3Cpath d='M72 58l2.6 8h8.4l-6.8 5 2.6 8-6.8-5-6.8 5 2.6-8-6.8-5h8.4z'/%3E%3C/svg%3E");
+  -webkit-mask-size: 96px 96px; mask-size: 96px 96px;
+}
+.banner { position: relative; height: 96px; border-radius: 22px; overflow: hidden; margin: 8px 0 28px; box-shadow: 0 20px 40px -18px var(--glass-shadow), inset 0 0 0 1px rgba(255, 255, 255, 0.2); }
+.banner .canton { position: absolute; inset: 0 auto 0 0; width: 38%; opacity: 0.8;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='30' viewBox='0 0 34 30'%3E%3Cpath fill='white' d='M17 8l1.6 4.9h5.1l-4.1 3 1.6 4.9-4.2-3-4.2 3 1.6-4.9-4.1-3h5.1z'/%3E%3C/svg%3E") center / 34px 30px, linear-gradient(160deg, #3c3b6e, #2a2f78); }
+.banner .stripes { position: absolute; inset: 0 0 0 38%; opacity: 0.72; background: repeating-linear-gradient(to bottom, #b22234 0 7.385px, #fff 7.385px 14.77px); }
+.banner .bn-text { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 10px 22px; border-radius: 999px; white-space: nowrap; font-family: var(--font-head); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; font-size: 1rem; }
+/* cards, history, grammar and plan */
+.flip { background: none; border: 0; padding: 0; text-align: left; width: 100%; color: inherit; display: flex; flex-direction: column; justify-content: center; min-height: 170px; font: inherit; cursor: pointer; }
+.ox { display: inline-block; margin-top: 14px; font-weight: 600; font-size: 0.9rem; color: var(--accent); text-decoration: none; }
+.ox:hover { text-decoration: underline; }
+.inp { background: var(--glass); border: 1px solid var(--glass-edge); border-radius: 12px; padding: 10px 14px; color: var(--fg); font: inherit; width: 100%; min-width: 0; }
+.inp::placeholder { color: var(--muted); }
+.panel { padding: 18px 20px; border-radius: 20px; }
+.addw .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0 12px; }
+.msg { color: var(--muted); font-size: 0.88rem; margin-top: 8px; min-height: 1.3em; }
+.oxrow { display: flex; gap: 10px; margin-top: 10px; align-items: center; flex-wrap: wrap; }
+.oxrow .inp { flex: 1 1 180px; }
+.hist-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.hstats { color: var(--muted); font-size: 0.92rem; }
+.hlist { display: grid; gap: 10px; max-width: 760px; }
+.hrow { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; background: var(--glass); border: 1px solid var(--glass-edge); border-radius: 16px; padding: 12px 16px; }
+.hmain { min-width: 0; display: grid; }
+.hmain b { font-family: var(--font-head); font-size: 1.15rem; letter-spacing: 0.02em; overflow-wrap: anywhere; }
+.hmain small { color: var(--muted); }
+.hact { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.empty { color: var(--muted); padding: 18px 4px; }
+.hclear { margin-top: 22px; }
+.gram-tabs { border-radius: 24px; margin-bottom: 22px; }
+.gintro { color: var(--muted); max-width: 70ch; margin-bottom: 22px; }
+.gcard .formula { display: block; margin-top: 12px; white-space: pre-wrap; font-family: var(--font-body); font-size: 0.9rem; background: var(--glass); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; overflow-wrap: anywhere; }
+.gcard ul { margin: 12px 0 0; padding-left: 18px; font-size: 0.93rem; }
+.gcard li { margin: 5px 0; overflow-wrap: anywhere; }
+.gcard .sig { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+.gcard .sig b { color: var(--fg); font-weight: 600; }
+.plan-ctl { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 18px; }
+.plan-ctl .grp { display: grid; gap: 8px; }
+.plan-sum { padding: 18px 22px; border-radius: 20px; margin-bottom: 22px; max-width: 760px; }
+.plan-sum b { font-family: var(--font-head); font-size: 1.5rem; letter-spacing: 0.02em; }
+.plan-sum p { color: var(--muted); margin-top: 6px; }
+.week { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.acts { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 14px; }
+.acts li { display: grid; gap: 4px; justify-items: start; }
+.acts strong { font-family: var(--font-head); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.92rem; }
+.day .tm { display: inline-block; padding: 2px 10px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 28%, transparent); color: var(--fg); font-weight: 700; font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+.day .ad { color: var(--muted); font-size: 0.9rem; }
+@media (max-width: 480px) { .addw .row2 { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="flag" viewBox="0 0 38 20">
+    <rect width="38" height="20" fill="#fff"/>
+    <g fill="#b22234">
+      <rect y="0" width="38" height="1.54"/><rect y="3.08" width="38" height="1.54"/><rect y="6.15" width="38" height="1.54"/>
+      <rect y="9.23" width="38" height="1.54"/><rect y="12.31" width="38" height="1.54"/><rect y="15.38" width="38" height="1.54"/>
+      <rect y="18.46" width="38" height="1.54"/>
+    </g>
+    <rect width="15.2" height="10.77" fill="#3c3b6e"/>
+    <g fill="#fff">
+      <circle cx="2.5" cy="2.1" r="0.7"/><circle cx="6.3" cy="2.1" r="0.7"/><circle cx="10.1" cy="2.1" r="0.7"/><circle cx="13.2" cy="2.1" r="0.7"/>
+      <circle cx="2.5" cy="5.4" r="0.7"/><circle cx="6.3" cy="5.4" r="0.7"/><circle cx="10.1" cy="5.4" r="0.7"/><circle cx="13.2" cy="5.4" r="0.7"/>
+      <circle cx="2.5" cy="8.7" r="0.7"/><circle cx="6.3" cy="8.7" r="0.7"/><circle cx="10.1" cy="8.7" r="0.7"/><circle cx="13.2" cy="8.7" r="0.7"/>
+    </g>
+  </symbol>
+</svg>
+<div class="field" aria-hidden="true"><div class="blob r"></div><div class="blob y"></div><div class="blob b"></div></div>
+
+<div class="wrap">
+  <header class="top">
+    <div class="pill glass">
+      <a class="logo" href="#home">lowk3y english</a>
+      <nav aria-label="Разделы">
+        <a href="#cards">Карточки</a>
+        <a href="#history">История</a>
+        <a href="#quiz">Тест</a>
+        <a href="#exams">Экзамены</a>
+        <a href="#grammar">Грамматика</a>
+        <a href="#plan">План</a>
+      </nav>
+      <button class="theme-btn" id="theme" type="button" aria-label="Переключить тему">Светлая тема</button>
+    </div>
+  </header>
+
+  <div class="view" id="home">
+  <div class="hero">
+    <div>
+      <div class="usa-tag"><b>★ ★ ★</b> Real American English</div>
+      <h1>Американский английский <em>без зубрёжки</em></h1>
+      <p class="lead">Слова и фразы, которые американцы говорят на самом деле: карточки, мини-тесты и понятная грамматика. Двадцать минут в день, и через три месяца вы понимаете сериалы без субтитров.</p>
+      <div class="cta-row">
+        <a class="btn" href="#cards">Начать с карточек</a>
+        <a class="btn ghost" href="#plan">Посмотреть план</a>
+        <a class="btn tt" href="https://www.tiktok.com/@lowk3y_stt?_r=1&amp;_t=ZS-9BJfPsSJ08S" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.6 8.3a6.3 6.3 0 0 1-3.9-1.4v7.3a5.6 5.6 0 1 1-4.8-5.5v3.1a2.6 2.6 0 1 0 1.8 2.4V2h2.9a3.9 3.9 0 0 0 4 3.6z"/></svg>Мы в TikTok</a>
+      </div>
+    </div>
+    <div class="wotd glass float" aria-live="polite">
+      <div class="eyebrow row">Слово дня <svg class="flag" aria-hidden="true"><use href="#flag" width="100%" height="100%"/></svg></div>
+      <div class="word" id="wotd-word">—</div>
+      <div class="ipa" id="wotd-ipa"></div>
+      <div class="tr" id="wotd-tr"></div>
+      <div class="ex" id="wotd-ex"></div>
+    </div>
+  </div>
+  <div class="banner">
+    <div class="canton"></div>
+    <div class="stripes"></div>
+    <div class="bn-text glass">Say it like an American</div>
+  </div>
+  <div class="tiles">
+    <a class="tile glass" href="#cards"><b>Карточки слов</b><span>Бесконечная колода со ссылками на Oxford</span></a>
+    <a class="tile glass" href="#history"><b>История слов</b><span>Выученные и запомненные</span></a>
+    <a class="tile glass" href="#quiz"><b>Мини-тест</b><span>6 вопросов с объяснениями</span></a>
+    <a class="tile glass" href="#exams"><b>IELTS, SAT, TOEFL</b><span>Пробные варианты и разминка</span></a>
+    <a class="tile glass" href="#grammar-tenses"><b>Грамматика</b><span>Времена, словообразование и ещё 9 разделов</span></a>
+    <a class="tile glass" href="#plan"><b>План занятий</b><span>Под ваше время в день и в неделю</span></a>
+  </div>
+  </div>
+
+  <section class="view" id="cards" hidden>
+    <div class="sec-head">
+      <div>
+        <h2>Карточки слов</h2>
+        <p>Колода не заканчивается: слова идут по кругу в случайном порядке. Нажмите на карточку, чтобы увидеть перевод. «Запомнил» и «Выучил» сохраняются в истории, а выученные слова из колоды уходят.</p>
+      </div>
+      <div class="chips glass" role="group" aria-label="Уровень">
+        <button class="chip" data-lvl="all" aria-pressed="true">Все</button>
+        <button class="chip" data-lvl="A2" aria-pressed="false">A2</button>
+        <button class="chip" data-lvl="B1" aria-pressed="false">B1</button>
+        <button class="chip" data-lvl="B2" aria-pressed="false">B2</button>
+        <button class="chip" data-lvl="C1" aria-pressed="false">C1</button>
+        <button class="chip" data-lvl="Свои" aria-pressed="false">Свои</button>
+      </div>
+    </div>
+    <div class="deck">
+      <div class="card glass float d1">
+        <button class="flip" id="card" aria-label="Карточка слова. Нажмите, чтобы перевернуть"></button>
+        <a class="ox" id="ox" href="https://www.oxfordlearnersdictionaries.com/" target="_blank" rel="noopener noreferrer">Открыть в Oxford Learner's Dictionaries ↗</a>
+      </div>
+      <div class="deck-bar">
+        <button class="mini" id="again">Ещё раз</button>
+        <button class="mini" id="rem">Запомнил</button>
+        <button class="mini ok" id="know">Выучил</button>
+        <span class="count" id="count"></span>
+      </div>
+      <form class="addw glass panel" id="addw" autocomplete="off">
+        <div class="eyebrow">Своё слово</div>
+        <div class="row2">
+          <input class="inp" id="cw-en" type="text" placeholder="Слово или фраза" aria-label="Слово или фраза">
+          <input class="inp" id="cw-ru" type="text" placeholder="Перевод" aria-label="Перевод">
+        </div>
+        <button class="btn sm" type="submit">Добавить в колоду</button>
+        <div class="msg" id="cw-msg" aria-live="polite"></div>
+      </form>
+      <div class="glass panel">
+        <div class="eyebrow">Найти слово в Oxford</div>
+        <div class="oxrow">
+          <input class="inp" id="ox-q" type="text" placeholder="Например, figure out" aria-label="Слово для поиска">
+          <a class="btn ghost sm" id="ox-go" href="https://www.oxfordlearnersdictionaries.com/" target="_blank" rel="noopener noreferrer">Искать ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="quiz" hidden>
+    <div class="sec-head">
+      <div>
+        <h2>Мини-тест</h2>
+        <p>Шесть вопросов на частые ошибки и на американские слова. После каждого ответа появляется объяснение.</p>
+      </div>
+    </div>
+    <div class="quiz glass float d2">
+      <div class="progress"><i id="qbar"></i></div>
+      <div class="eyebrow" id="qnum"></div>
+      <div class="q" id="qtext"></div>
+      <div class="opts" id="qopts"></div>
+      <div class="explain" id="qexp" aria-live="polite"></div>
+      <div class="quiz-foot">
+        <button class="btn" id="qnext" hidden>Дальше</button>
+        <span id="qscore" style="color:var(--muted)"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="history" hidden>
+    <div class="sec-head">
+      <div>
+        <h2>История слов</h2>
+        <p>Здесь собраны слова, которые вы отметили на карточках. Данные хранятся в вашем браузере и никуда не отправляются.</p>
+      </div>
+    </div>
+    <div class="hist-top">
+      <div class="chips glass" role="group" aria-label="Список">
+        <button class="chip" data-h="learned" aria-pressed="true">Выученные</button>
+        <button class="chip" data-h="remembered" aria-pressed="false">Запомненные</button>
+      </div>
+      <div class="hstats" id="hist-stats"></div>
+    </div>
+    <div class="hlist" id="hist-list"></div>
+    <div class="hclear"><button class="mini" id="hist-clear" type="button">Очистить историю</button></div>
+  </section>
+
+  <section class="view" id="exams" hidden>
+    <div class="sec-head">
+      <div>
+        <h2>IELTS, SAT, TOEFL</h2>
+        <p>Полные пробные варианты есть только у организаторов экзаменов, поэтому ниже ссылки на официальные материалы. Они открываются в новой вкладке.</p>
+      </div>
+    </div>
+    <div class="official">
+      <div class="tip glass float">
+        <h3>IELTS</h3>
+        <p>Бесплатные пробные задания от организаций, которые проводят экзамен: British Council и IDP.</p>
+        <div class="links">
+          <a class="btn ghost sm" href="https://takeielts.britishcouncil.org/prepare-for-test/free-practice-tests" target="_blank" rel="noopener noreferrer">British Council</a>
+          <a class="btn ghost sm" href="https://ielts.idp.com/prepare/article-free-practice-tests" target="_blank" rel="noopener noreferrer">IDP</a>
+        </div>
+      </div>
+      <div class="tip glass float d1">
+        <h3>SAT</h3>
+        <p>Полноразмерные пробные тесты от College Board: цифровые в приложении Bluebook и бумажные в PDF.</p>
+        <div class="links">
+          <a class="btn ghost sm" href="https://satsuite.collegeboard.org/practice/practice-tests/bluebook" target="_blank" rel="noopener noreferrer">Bluebook</a>
+          <a class="btn ghost sm" href="https://satsuite.collegeboard.org/practice/practice-tests/paper" target="_blank" rel="noopener noreferrer">Бумажные тесты</a>
+        </div>
+      </div>
+      <div class="tip glass float d2">
+        <h3>TOEFL</h3>
+        <p>Официальные материалы для подготовки на сайте ETS, создателя экзамена, включая пробные задания.</p>
+        <div class="links">
+          <a class="btn ghost sm" href="https://www.ets.org/toefl/test-takers/ibt/prepare.html" target="_blank" rel="noopener noreferrer">Подготовка на ETS</a>
+        </div>
+      </div>
+    </div>
+    <div class="sec-head sub-head">
+      <div>
+        <h2>Разминка</h2>
+        <p>Короткие наборы по пять вопросов в духе экзаменов, чтобы размяться перед настоящим пробником.</p>
+      </div>
+      <div class="chips glass" role="group" aria-label="Экзамен">
+        <button class="chip" data-exam="ielts" aria-pressed="true">IELTS</button>
+        <button class="chip" data-exam="sat" aria-pressed="false">SAT</button>
+        <button class="chip" data-exam="toefl" aria-pressed="false">TOEFL</button>
+      </div>
+    </div>
+    <div class="quiz glass float d2">
+      <div class="progress"><i id="ebar"></i></div>
+      <div class="eyebrow" id="enum"></div>
+      <div class="passage" id="epassage" hidden></div>
+      <div class="q" id="etext"></div>
+      <div class="opts" id="eopts"></div>
+      <div class="explain" id="eexp" aria-live="polite"></div>
+      <div class="quiz-foot">
+        <button class="btn" id="enext" hidden>Дальше</button>
+        <span id="escore" style="color:var(--muted)"></span>
+      </div>
+    </div>
+    <p class="note">Вопросы в разминке написаны для этого сайта в формате экзаменов и не взяты из официальных тестов. Для полной подготовки проходите официальные пробные варианты выше.</p>
+  </section>
+
+  <section class="view" id="grammar" hidden>
+    <div class="sec-head">
+      <div>
+        <h2>Грамматика</h2>
+        <p>Выберите раздел. В каждом есть правила, формулы и примеры с переводом.</p>
+      </div>
+    </div>
+    <div class="chips glass gram-tabs" id="gtabs" role="group" aria-label="Разделы грамматики"></div>
+    <div id="gbody"></div>
+  </section>
+
+  <section class="view" id="plan" hidden>
+    <div class="sec-head">
+      <div>
+        <h2>План занятий</h2>
+        <p>Выберите, сколько времени вы готовы уделять английскому. План пересчитается сразу.</p>
+      </div>
+    </div>
+    <div class="plan-ctl">
+      <div class="grp">
+        <div class="eyebrow">Времени в день</div>
+        <div class="chips glass" role="group" aria-label="Минут в день">
+          <button class="chip" data-min="15" aria-pressed="false">15 мин</button>
+          <button class="chip" data-min="30" aria-pressed="true">30 мин</button>
+          <button class="chip" data-min="60" aria-pressed="false">1 час</button>
+          <button class="chip" data-min="120" aria-pressed="false">2 часа</button>
+        </div>
+      </div>
+      <div class="grp">
+        <div class="eyebrow">Дней в неделю</div>
+        <div class="chips glass" role="group" aria-label="Дней в неделю">
+          <button class="chip" data-days="3" aria-pressed="false">3</button>
+          <button class="chip" data-days="5" aria-pressed="true">5</button>
+          <button class="chip" data-days="7" aria-pressed="false">7</button>
+        </div>
+      </div>
+    </div>
+    <div class="plan-sum glass" aria-live="polite">
+      <b id="plan-total"></b>
+      <p id="plan-hint"></p>
+    </div>
+    <div class="week" id="week"></div>
+  </section>
+
+  <footer class="glass">
+    <span class="fl"><svg class="flag" aria-hidden="true"><use href="#flag" width="100%" height="100%"/></svg>lowk3y english</span>
+    <span>Американский английский для русскоговорящих</span>
+    <a href="https://www.tiktok.com/@lowk3y_stt?_r=1&amp;_t=ZS-9BJfPsSJ08S" target="_blank" rel="noopener noreferrer">TikTok @lowk3y_stt</a>
+  </footer>
+</div>
+
+<script>
+(function () {
+  /* theme: dark by default, light on request, choice remembered per viewer */
+  var root = document.documentElement;
+  var tbtn = document.getElementById("theme");
+  var cur = root.getAttribute("data-theme") === "light" ? "light" : "dark";
+  try { if (localStorage.getItem("wbw-theme") === "light") cur = "light"; } catch (e) {}
+  function applyTheme(t) {
+    cur = t;
+    root.setAttribute("data-theme", t);
+    tbtn.textContent = t === "dark" ? "Светлая тема" : "Тёмная тема";
+  }
+  applyTheme(cur);
+  tbtn.addEventListener("click", function () {
+    var next = cur === "dark" ? "light" : "dark";
+    applyTheme(next);
+    try { localStorage.setItem("wbw-theme", next); } catch (e) {}
+  });
+
+  /* pages: one view at a time, switched by the URL hash, same tab */
+  var VIEWS = ["home", "cards", "history", "quiz", "exams", "grammar", "plan"];
+  var navLinks = document.querySelectorAll("nav a");
+  var gramSel = "tenses";
+  function route() {
+    var h = (location.hash || "").replace("#", "");
+    var base = h;
+    if (h.indexOf("grammar-") === 0) { base = "grammar"; gramSel = h.slice(8); }
+    if (VIEWS.indexOf(base) < 0) base = "home";
+    VIEWS.forEach(function (v) { document.getElementById(v).hidden = v !== base; });
+    navLinks.forEach(function (a) {
+      if (a.getAttribute("href") === "#" + base) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+    if (base === "history") renderHistory();
+    if (base === "grammar") renderGrammar();
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", route);
+
+  var WORDS = [
+    { en: "low-key", ipa: "/ˈloʊ kiː/", ru: "немного, втайне (разг.)", ex: "I'm low-key excited for Friday.", lvl: "B2" },
+    { en: "hang out", ipa: "/hæŋ aʊt/", ru: "тусоваться", ex: "We hang out at the mall on weekends.", lvl: "A2" },
+    { en: "apartment", ipa: "/əˈpɑːrtmənt/", ru: "квартира", ex: "I just moved into a new apartment.", lvl: "A2" },
+    { en: "figure out", ipa: "/ˈfɪɡjər aʊt/", ru: "разобраться, понять", ex: "I can't figure out this app.", lvl: "B1" },
+    { en: "sidewalk", ipa: "/ˈsaɪdwɔːk/", ru: "тротуар", ex: "Don't park on the sidewalk.", lvl: "A2" },
+    { en: "gonna", ipa: "/ˈɡʌnə/", ru: "собираюсь (от going to)", ex: "I'm gonna grab some coffee.", lvl: "B1" },
+    { en: "awesome", ipa: "/ˈɔːsəm/", ru: "классный", ex: "That concert was awesome.", lvl: "A2" },
+    { en: "the check", ipa: "/ðə tʃek/", ru: "счёт в ресторане", ex: "Can we get the check, please?", lvl: "B1" },
+    { en: "takeout", ipa: "/ˈteɪkaʊt/", ru: "еда навынос", ex: "Let's just order takeout tonight.", lvl: "B1" },
+    { en: "hit me up", ipa: "/hɪt mi ʌp/", ru: "напиши или позвони мне", ex: "Hit me up when you get there.", lvl: "B2" },
+
+    { en: "grab", ru: "схватить, перекусить", ex: "Let's grab lunch downtown.", lvl: "A2" },
+    { en: "trash", ru: "мусор", ex: "Take out the trash, please.", lvl: "A2" },
+    { en: "parking lot", ru: "парковка", ex: "I'll meet you in the parking lot.", lvl: "A2" },
+    { en: "movie theater", ru: "кинотеатр", ex: "We went to the movie theater on Friday.", lvl: "A2" },
+    { en: "cookie", ru: "печенье", ex: "She baked chocolate chip cookies.", lvl: "A2" },
+    { en: "vacation", ru: "отпуск, каникулы", ex: "We're on vacation next week.", lvl: "A2" },
+    { en: "gas station", ru: "заправка", ex: "There's a gas station on the corner.", lvl: "A2" },
+    { en: "subway", ru: "метро", ex: "I take the subway to work.", lvl: "A2" },
+    { en: "garbage can", ru: "мусорное ведро", ex: "Put it in the garbage can.", lvl: "A2" },
+    { en: "candy", ru: "конфеты, сладости", ex: "The kids want some candy.", lvl: "A2" },
+    { en: "fries", ru: "картофель фри", ex: "I'll have a burger and fries.", lvl: "A2" },
+    { en: "mail", ru: "почта", ex: "Did you check the mail today?", lvl: "A2" },
+    { en: "restroom", ru: "туалет (в общественном месте)", ex: "Where's the restroom?", lvl: "A2" },
+    { en: "crosswalk", ru: "пешеходный переход", ex: "Use the crosswalk, not the street.", lvl: "A2" },
+    { en: "sneakers", ru: "кроссовки", ex: "I need new sneakers.", lvl: "A2" },
+    { en: "pants", ru: "брюки", ex: "These pants are too long.", lvl: "A2" },
+    { en: "soda", ru: "газировка", ex: "Do you want a soda?", lvl: "A2" },
+    { en: "faucet", ru: "кран", ex: "The faucet is leaking.", lvl: "A2" },
+    { en: "cell phone", ru: "мобильный телефон", ex: "My cell phone is dead.", lvl: "A2" },
+    { en: "grocery store", ru: "продуктовый магазин", ex: "I'm heading to the grocery store.", lvl: "A2" },
+    { en: "highway", ru: "шоссе", ex: "The highway was packed.", lvl: "A2" },
+    { en: "backpack", ru: "рюкзак", ex: "Don't forget your backpack.", lvl: "A2" },
+    { en: "elevator", ru: "лифт", ex: "Take the elevator to the fifth floor.", lvl: "A2" },
+    { en: "appointment", ru: "запись, приём, встреча", ex: "I have a doctor's appointment at three.", lvl: "A2" },
+
+    { en: "carry-on", ru: "ручная кладь", ex: "I only have a carry-on.", lvl: "B1" },
+    { en: "drugstore", ru: "аптека (и магазин товаров повседневного спроса)", ex: "I stopped by the drugstore.", lvl: "B1" },
+    { en: "downtown", ru: "центр города", ex: "We're meeting downtown.", lvl: "B1" },
+    { en: "commute", ru: "дорога на работу, ездить на работу", ex: "My commute takes forty minutes.", lvl: "B1" },
+    { en: "roommate", ru: "сосед по комнате или квартире", ex: "My roommate is moving out.", lvl: "B1" },
+    { en: "tip", ru: "чаевые", ex: "Don't forget to leave a tip.", lvl: "B1" },
+    { en: "to go", ru: "с собой, на вынос", ex: "Can I get this to go?", lvl: "B1" },
+    { en: "heads up", ru: "предупреждение", ex: "Just a heads up, I'll be late.", lvl: "B1" },
+    { en: "no worries", ru: "без проблем", ex: "No worries, take your time.", lvl: "B1" },
+    { en: "catch up", ru: "наверстать, пообщаться после перерыва", ex: "Let's catch up this weekend.", lvl: "B1" },
+    { en: "run errands", ru: "ездить по делам", ex: "I have to run some errands.", lvl: "B1" },
+    { en: "sign up", ru: "записаться", ex: "I signed up for a class.", lvl: "B1" },
+    { en: "pick up", ru: "забрать, подобрать", ex: "Can you pick up the kids?", lvl: "B1" },
+    { en: "drop off", ru: "подвезти, оставить", ex: "I'll drop you off at school.", lvl: "B1" },
+    { en: "work out", ru: "заниматься спортом; получиться", ex: "I work out three times a week.", lvl: "B1" },
+    { en: "hang on", ru: "подожди минутку", ex: "Hang on, I'll be right back.", lvl: "B1" },
+    { en: "grab a bite", ru: "перекусить", ex: "Let's grab a bite after work.", lvl: "B1" },
+    { en: "cut it out", ru: "прекрати", ex: "Cut it out, that's annoying.", lvl: "B1" },
+    { en: "fall", ru: "осень (в США)", ex: "Fall is my favorite season.", lvl: "B1" },
+    { en: "sophomore", ru: "второкурсник (или второклассник в школе)", ex: "She's a sophomore in college.", lvl: "B1" },
+    { en: "campus", ru: "кампус", ex: "The campus is huge.", lvl: "B1" },
+    { en: "major", ru: "специальность в университете", ex: "My major is economics.", lvl: "B1" },
+    { en: "tuition", ru: "плата за обучение", ex: "Tuition went up again this year.", lvl: "B1" },
+    { en: "scholarship", ru: "стипендия, грант на учёбу", ex: "She won a scholarship.", lvl: "B1" },
+    { en: "deadline", ru: "крайний срок", ex: "The deadline is Friday.", lvl: "B1" },
+    { en: "internship", ru: "стажировка", ex: "I got an internship in New York.", lvl: "B1" },
+    { en: "resume", ru: "резюме", ex: "Please send me your resume.", lvl: "B1" },
+    { en: "application", ru: "заявление, заявка", ex: "I submitted my application online.", lvl: "B1" },
+    { en: "GPA", ru: "средний балл успеваемости", ex: "He has a 3.8 GPA.", lvl: "B1" },
+    { en: "semester", ru: "семестр", ex: "The fall semester starts in August.", lvl: "B1" },
+    { en: "essay", ru: "эссе", ex: "I have an essay due Monday.", lvl: "B1" },
+    { en: "budget", ru: "бюджет", ex: "We're on a tight budget.", lvl: "B1" },
+    { en: "afford", ru: "позволить себе (финансово)", ex: "I can't afford a new car.", lvl: "B1" },
+    { en: "bargain", ru: "выгодная покупка", ex: "At that price, it's a bargain.", lvl: "B1" },
+
+    { en: "recommendation letter", ru: "рекомендательное письмо", ex: "I asked my teacher for a recommendation letter.", lvl: "B2" },
+    { en: "bummer", ru: "досада, обидно", ex: "That's a bummer.", lvl: "B2" },
+    { en: "legit", ru: "настоящий, надёжный (разг.)", ex: "This website looks legit.", lvl: "B2" },
+    { en: "sketchy", ru: "сомнительный", ex: "That neighborhood is kind of sketchy.", lvl: "B2" },
+    { en: "on point", ru: "в точку, безупречно", ex: "Your outfit is on point.", lvl: "B2" },
+    { en: "binge-watch", ru: "смотреть запоем", ex: "We binge-watched the whole season.", lvl: "B2" },
+    { en: "stoked", ru: "в восторге (разг.)", ex: "I'm so stoked for the trip.", lvl: "B2" },
+    { en: "chill", ru: "расслабиться, отдыхать", ex: "Let's just chill tonight.", lvl: "B2" },
+    { en: "I'm down", ru: "я за, согласен (разг.)", ex: "Want to go hiking? I'm down.", lvl: "B2" },
+    { en: "flex", ru: "выпендриваться, хвастаться", ex: "He likes to flex his new car.", lvl: "B2" },
+    { en: "vibe", ru: "атмосфера, настроение", ex: "This place has a great vibe.", lvl: "B2" },
+    { en: "ghost", ru: "пропасть без объяснений", ex: "He ghosted me after two dates.", lvl: "B2" },
+    { en: "cringe", ru: "неловкий, стыдный", ex: "That video was so cringe.", lvl: "B2" },
+    { en: "spill the tea", ru: "рассказать сплетню", ex: "Come on, spill the tea!", lvl: "B2" },
+    { en: "no cap", ru: "без обмана, честно", ex: "That was the best pizza ever, no cap.", lvl: "B2" },
+    { en: "mid", ru: "посредственный", ex: "The movie was kind of mid.", lvl: "B2" },
+    { en: "touch base", ru: "выйти на связь, сверить планы", ex: "Let's touch base next week.", lvl: "B2" },
+    { en: "ballpark figure", ru: "примерная оценка", ex: "Give me a ballpark figure.", lvl: "B2" },
+    { en: "loop in", ru: "включить в переписку", ex: "Please loop me in on the email.", lvl: "B2" },
+    { en: "wrap up", ru: "завершить", ex: "Let's wrap up this meeting.", lvl: "B2" },
+    { en: "take for granted", ru: "воспринимать как должное", ex: "Don't take your health for granted.", lvl: "B2" },
+    { en: "get the hang of", ru: "освоиться, научиться", ex: "I'm getting the hang of it.", lvl: "B2" },
+    { en: "make ends meet", ru: "сводить концы с концами", ex: "It's hard to make ends meet here.", lvl: "B2" },
+    { en: "break the ice", ru: "растопить лёд", ex: "A joke helped break the ice.", lvl: "B2" },
+    { en: "call it a day", ru: "закончить на сегодня", ex: "Let's call it a day.", lvl: "B2" },
+    { en: "out of the blue", ru: "внезапно, как гром среди ясного неба", ex: "She called me out of the blue.", lvl: "B2" },
+    { en: "on the same page", ru: "на одной волне", ex: "Are we on the same page?", lvl: "B2" },
+    { en: "under the weather", ru: "неважно себя чувствовать", ex: "I'm feeling under the weather.", lvl: "B2" },
+    { en: "piece of cake", ru: "проще простого", ex: "The test was a piece of cake.", lvl: "B2" },
+    { en: "inflation", ru: "инфляция", ex: "Inflation pushed prices up.", lvl: "B2" },
+    { en: "supply and demand", ru: "спрос и предложение", ex: "Prices follow supply and demand.", lvl: "B2" },
+    { en: "interest rate", ru: "процентная ставка", ex: "The bank raised the interest rate.", lvl: "B2" },
+    { en: "recession", ru: "рецессия", ex: "Experts fear a recession next year.", lvl: "B2" },
+    { en: "unemployment", ru: "безработица", ex: "Unemployment fell last month.", lvl: "B2" },
+    { en: "GDP", ru: "ВВП", ex: "The country's GDP grew by two percent.", lvl: "B2" },
+
+    { en: "nuance", ru: "нюанс", ex: "There's a nuance you might miss.", lvl: "C1" },
+    { en: "reluctant", ru: "неохотный", ex: "He was reluctant to answer.", lvl: "C1" },
+    { en: "thrive", ru: "процветать", ex: "Small businesses thrive here.", lvl: "C1" },
+    { en: "hinder", ru: "мешать, препятствовать", ex: "Noise can hinder concentration.", lvl: "C1" },
+    { en: "notion", ru: "представление, понятие", ex: "I reject the notion that it's easy.", lvl: "C1" },
+    { en: "plausible", ru: "правдоподобный", ex: "Her explanation sounds plausible.", lvl: "C1" },
+    { en: "mitigate", ru: "смягчать, снижать", ex: "We need to mitigate the risk.", lvl: "C1" },
+    { en: "inevitable", ru: "неизбежный", ex: "Change is inevitable.", lvl: "C1" },
+    { en: "undermine", ru: "подрывать", ex: "Rumors undermined his authority.", lvl: "C1" },
+    { en: "scarce", ru: "дефицитный, редкий", ex: "Fresh water is scarce there.", lvl: "C1" },
+    { en: "trade deficit", ru: "дефицит торгового баланса", ex: "The trade deficit widened in March.", lvl: "C1" },
+    { en: "incentive", ru: "стимул", ex: "Lower taxes are an incentive to invest.", lvl: "C1" }
+  ];
+
+  /* word of the day: stable per calendar day */
+  var d = new Date();
+  var seed = d.getFullYear() * 400 + d.getMonth() * 31 + d.getDate();
+  var w = WORDS[seed % WORDS.length];
+  document.getElementById("wotd-word").textContent = w.en;
+  document.getElementById("wotd-ipa").textContent = w.ipa;
+  document.getElementById("wotd-tr").textContent = w.ru;
+  document.getElementById("wotd-ex").textContent = w.ex;
+
+  /* flashcards: endless deck, Oxford links, history */
+  var OX = "https://www.oxfordlearnersdictionaries.com/search/american_english/?q=";
+  var OX_HOME = "https://www.oxfordlearnersdictionaries.com/";
+  var STORE = "lk3y-words-v2";
+  var st = { learned: {}, remembered: {}, custom: [] };
+  try {
+    var raw = localStorage.getItem(STORE);
+    if (raw) {
+      var parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === "object") {
+        st.learned = parsed.learned || {};
+        st.remembered = parsed.remembered || {};
+        st.custom = Array.isArray(parsed.custom) ? parsed.custom : [];
+      }
+    }
+  } catch (e) {}
+  function save() { try { localStorage.setItem(STORE, JSON.stringify(st)); } catch (e) {} }
+  function allWords() {
+    return WORDS.concat(st.custom.map(function (c) { return { en: c.en, ru: c.ru, ex: c.ex || "", ipa: "", lvl: "Свои" }; }));
+  }
+
+  var level = "all", queue = [], flipped = false, cur = null, shown = 0;
+  var card = document.getElementById("card");
+  var count = document.getElementById("count");
+  var oxLink = document.getElementById("ox");
+
+  function shuffle(a) {
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  function candidates() {
+    return allWords().filter(function (x) { return !st.learned[x.en] && (level === "all" || x.lvl === level); });
+  }
+  function nextCard() {
+    if (!queue.length) queue = shuffle(candidates());
+    cur = queue.length ? queue.shift() : null;
+    flipped = false;
+    if (cur) shown++;
+    renderCard();
+  }
+  function renderCard() {
+    var learnedN = Object.keys(st.learned).length;
+    if (!cur) {
+      card.innerHTML = '<div class="big">Колода пуста</div><div class="sub">Все слова этого уровня выучены. Выберите другой уровень или верните слова из истории.</div>';
+      oxLink.hidden = true;
+      count.textContent = "Выучено: " + learnedN;
+      return;
+    }
+    oxLink.hidden = false;
+    oxLink.href = OX + encodeURIComponent(cur.en);
+    if (!flipped) {
+      card.innerHTML = '<div class="lvl"></div><div class="big"></div><div class="sub"></div><div class="hint">Нажмите, чтобы перевернуть</div>';
+      card.querySelector(".big").textContent = cur.en;
+      card.querySelector(".sub").textContent = cur.ipa || "";
+    } else {
+      card.innerHTML = '<div class="lvl"></div><div class="big"></div><div class="sub"></div>';
+      card.querySelector(".big").textContent = cur.ru;
+      card.querySelector(".sub").textContent = cur.ex || "";
+    }
+    card.querySelector(".lvl").textContent = cur.lvl;
+    count.textContent = "Показано: " + shown + " · выучено: " + learnedN;
+  }
+
+  card.addEventListener("click", function () { if (!cur) return; flipped = !flipped; renderCard(); });
+  document.getElementById("again").addEventListener("click", function () {
+    if (!cur) return;
+    var pos = Math.min(queue.length, 3 + Math.floor(Math.random() * 4));
+    queue.splice(pos, 0, cur);
+    nextCard();
+  });
+  document.getElementById("rem").addEventListener("click", function () {
+    if (!cur) return;
+    var prev = st.remembered[cur.en];
+    st.remembered[cur.en] = { ru: cur.ru, lvl: cur.lvl, ts: Date.now(), n: prev && prev.n ? prev.n + 1 : 1 };
+    save();
+    nextCard();
+  });
+  document.getElementById("know").addEventListener("click", function () {
+    if (!cur) return;
+    st.learned[cur.en] = { ru: cur.ru, lvl: cur.lvl, ts: Date.now() };
+    delete st.remembered[cur.en];
+    save();
+    nextCard();
+  });
+
+  var chips = document.querySelectorAll("#cards .chip");
+  chips.forEach(function (c) {
+    c.addEventListener("click", function () {
+      chips.forEach(function (o) { o.setAttribute("aria-pressed", o === c ? "true" : "false"); });
+      level = c.getAttribute("data-lvl");
+      queue = [];
+      nextCard();
+    });
+  });
+
+  /* own words */
+  var cwEn = document.getElementById("cw-en"), cwRu = document.getElementById("cw-ru"), cwMsg = document.getElementById("cw-msg");
+  document.getElementById("addw").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var en = cwEn.value.trim(), ru = cwRu.value.trim();
+    if (!en || !ru) { cwMsg.textContent = "Заполните слово и перевод."; return; }
+    var dup = allWords().some(function (x) { return x.en.toLowerCase() === en.toLowerCase(); });
+    if (dup) { cwMsg.textContent = "Такое слово уже есть в колоде."; return; }
+    st.custom.push({ en: en, ru: ru });
+    save();
+    queue.unshift({ en: en, ru: ru, ex: "", ipa: "", lvl: "Свои" });
+    cwEn.value = ""; cwRu.value = "";
+    cwMsg.textContent = "Добавлено. Это слово будет следующим.";
+    if (!cur) nextCard();
+  });
+
+  /* Oxford search link follows the input */
+  var oxq = document.getElementById("ox-q"), oxgo = document.getElementById("ox-go");
+  oxq.addEventListener("input", function () {
+    var v = oxq.value.trim();
+    oxgo.href = v ? OX + encodeURIComponent(v) : OX_HOME;
+  });
+
+  nextCard();
+
+  /* quiz */
+  var QUIZ = [
+    { q: "She ___ to work every day by bus.", o: ["go", "goes", "is going"], a: 1, e: "Привычка в Present Simple, а с she глагол получает окончание -es." },
+    { q: "I ___ my keys. Can you help me look?", o: ["lost", "have lost", "was losing"], a: 1, e: "Результат важен сейчас: ключей до сих пор нет. Это Present Perfect." },
+    { q: "How ___ time do we have left?", o: ["many", "much", "a few"], a: 1, e: "Time неисчисляемое, поэтому much." },
+    { q: "He is ___ honest man.", o: ["a", "an", "the"], a: 1, e: "Слово honest начинается с гласного звука, поэтому an." },
+    { q: "I ___ TV when you called me.", o: ["watched", "was watching", "have watched"], a: 1, e: "Действие шло в момент другого события. Нужен Past Continuous." },
+    { q: "In the US, you take the ___ to get to the 5th floor.", o: ["lift", "elevator", "escalator"], a: 1, e: "Американцы говорят elevator. Lift звучит по-британски." }
+  ];
+  var qi = 0, score = 0, answered = false;
+  var qtext = document.getElementById("qtext"), qopts = document.getElementById("qopts"),
+      qexp = document.getElementById("qexp"), qnum = document.getElementById("qnum"),
+      qnext = document.getElementById("qnext"), qscore = document.getElementById("qscore"),
+      qbar = document.getElementById("qbar");
+
+  function showQ() {
+    answered = false;
+    if (qi >= QUIZ.length) {
+      qnum.textContent = "Готово";
+      qtext.textContent = "Результат: " + score + " из " + QUIZ.length;
+      qopts.innerHTML = "";
+      qexp.textContent = score === QUIZ.length ? "Отлично, без единой ошибки." : "Перечитайте правила в разделе грамматики и попробуйте ещё раз.";
+      qnext.textContent = "Пройти заново"; qnext.hidden = false;
+      qbar.style.width = "100%"; qscore.textContent = "";
+      return;
+    }
+    var item = QUIZ[qi];
+    qnum.textContent = "Вопрос " + (qi + 1) + " из " + QUIZ.length;
+    qtext.textContent = item.q;
+    qexp.textContent = "";
+    qnext.hidden = true;
+    qbar.style.width = (qi / QUIZ.length * 100) + "%";
+    qscore.textContent = "Верно: " + score;
+    qopts.innerHTML = "";
+    item.o.forEach(function (text, i) {
+      var b = document.createElement("button");
+      b.className = "opt"; b.type = "button"; b.textContent = text;
+      b.addEventListener("click", function () { pick(i); });
+      qopts.appendChild(b);
+    });
+  }
+  function pick(i) {
+    if (answered) return;
+    answered = true;
+    var item = QUIZ[qi];
+    var btns = qopts.querySelectorAll(".opt");
+    btns.forEach(function (b, j) {
+      b.disabled = true;
+      if (j === item.a) b.classList.add("right");
+      else if (j === i) b.classList.add("wrong");
+    });
+    if (i === item.a) score++;
+    qexp.textContent = (i === item.a ? "Верно. " : "Не совсем. ") + item.e;
+    qscore.textContent = "Верно: " + score;
+    qnext.textContent = qi === QUIZ.length - 1 ? "Показать результат" : "Дальше";
+    qnext.hidden = false;
+  }
+  qnext.addEventListener("click", function () {
+    if (qi >= QUIZ.length) { qi = 0; score = 0; } else { qi++; }
+    showQ();
+  });
+  showQ();
+
+  /* exam practice: IELTS, SAT, TOEFL */
+  var BEES = "Urban beekeeping has grown in many cities over the past decade. Supporters say rooftop hives help pollinate city parks, while some ecologists warn that too many managed hives can compete with wild bees for flowers.";
+  var EXAMS = {
+    ielts: { name: "IELTS", qs: [
+      { p: BEES, q: "True, False or Not Given: Supporters say rooftop hives help pollinate plants in city parks.", o: ["True", "False", "Not Given"], a: 0, e: "Это прямо сказано в тексте: сторонники считают, что ульи на крышах помогают опылению. Ответ True." },
+      { p: BEES, q: "True, False or Not Given: Rooftop hives produce more honey than hives in the countryside.", o: ["True", "False", "Not Given"], a: 2, e: "О количестве мёда в тексте ничего нет. Когда информации нет совсем, ответ Not Given." },
+      { p: BEES, q: "True, False or Not Given: Ecologists say managed hives never affect wild bees.", o: ["True", "False", "Not Given"], a: 1, e: "Экологи как раз предупреждают, что ульи могут конкурировать с дикими пчёлами. Текст противоречит утверждению: False." },
+      { q: "Choose the closest meaning. The council decided to curb noise from nightclubs.", o: ["increase", "restrict", "measure"], a: 1, e: "Curb значит «ограничивать, сдерживать», то есть restrict." },
+      { q: "Writing Task 1. The number of visitors ___ sharply between 2015 and 2020.", o: ["rise", "rose", "is rising"], a: 1, e: "Период в прошлом закончился, поэтому нужен Past Simple: rose." }
+    ] },
+    sat: { name: "SAT", qs: [
+      { q: "The experiment failed twice; ___ the team kept going.", o: ["nevertheless,", "therefore,", "for instance,"], a: 0, e: "Вторая часть идёт наперекор первой, поэтому нужен переход с уступительным смыслом: nevertheless." },
+      { p: "Though the critic's tone was often caustic, her analysis of the film was careful and fair.", q: "As used in the text, caustic most nearly means", o: ["harshly critical", "cheerful", "hesitant"], a: 0, e: "Слово though показывает контраст с «careful and fair». Значит, тон был резким: harshly critical." },
+      { q: "The collection of rare coins ___ displayed on the second floor.", o: ["is", "are", "were"], a: 0, e: "Подлежащее здесь collection (единственное число), а не coins. Поэтому is." },
+      { q: "The committee announced ___ decision on Friday.", o: ["it's", "its", "their's"], a: 1, e: "Нужно притяжательное местоимение its. It's всегда значит it is или it has." },
+      { p: "Researchers found that students who slept eight hours scored higher on memory tests than those who slept five. The finding does not prove that sleep alone caused the difference.", q: "What is the main function of the second sentence?", o: ["It warns against reading too much into the result", "It contradicts the first sentence", "It gives an example of the result"], a: 0, e: "Второй фрагмент не отменяет результат, а напоминает, что связь не доказывает причину." }
+    ] },
+    toefl: { name: "TOEFL", qs: [
+      { p: "Glaciers move slowly, but over thousands of years they carve deep valleys into mountains.", q: "The word carve in the passage is closest in meaning to", o: ["cut", "climb", "cover"], a: 0, e: "Глетчеры прорезают долины в горах. Ближе всего по смыслу cut." },
+      { p: "Each autumn, monarch butterflies travel thousands of kilometers to warmer regions. No single butterfly makes the round trip; it takes several generations.", q: "What can be inferred from the passage?", o: ["The butterflies that return in spring are descendants of those that left", "Every monarch completes the whole round trip", "Monarchs avoid warm regions"], a: 0, e: "Ни одна бабочка не проходит весь круг, поэтому обратно возвращаются уже их потомки." },
+      { p: "Octopuses have three hearts: two pump blood to the gills, and one pumps it to the rest of the body.", q: "According to the passage, how many hearts send blood to the gills?", o: ["One", "Two", "Three"], a: 1, e: "В тексте прямо сказано: two pump blood to the gills." },
+      { q: "The professor asked us to ___ our ideas with evidence.", o: ["reject", "support", "avoid"], a: 1, e: "Идеи подкрепляют доказательствами, поэтому support." },
+      { q: "Which sentence best expresses the essential meaning? Although the experiment was small, its results were hard to ignore.", o: ["Because the experiment was small, nobody noticed the results.", "The results were important even though the experiment was small.", "The experiment was large, so the results were hard to ignore."], a: 1, e: "Although задаёт контраст: эксперимент небольшой, но результаты значимые." }
+    ] }
+  };
+  var ekey = "ielts", ei = 0, escore = 0, eans = false;
+  var ePass = document.getElementById("epassage"), eText = document.getElementById("etext"),
+      eOpts = document.getElementById("eopts"), eExp = document.getElementById("eexp"),
+      eNum = document.getElementById("enum"), eNext = document.getElementById("enext"),
+      eScore = document.getElementById("escore"), eBar = document.getElementById("ebar");
+
+  function showE() {
+    eans = false;
+    var set = EXAMS[ekey];
+    if (ei >= set.qs.length) {
+      eNum.textContent = set.name + " · готово";
+      ePass.hidden = true;
+      eText.textContent = "Результат: " + escore + " из " + set.qs.length;
+      eOpts.innerHTML = "";
+      eExp.textContent = escore === set.qs.length ? "Отличный результат, ошибок нет." : "Разберите объяснения к ошибкам и пройдите набор ещё раз.";
+      eNext.textContent = "Пройти заново"; eNext.hidden = false;
+      eBar.style.width = "100%"; eScore.textContent = "";
+      return;
+    }
+    var item = set.qs[ei];
+    eNum.textContent = set.name + " · вопрос " + (ei + 1) + " из " + set.qs.length;
+    if (item.p) { ePass.textContent = item.p; ePass.hidden = false; } else { ePass.hidden = true; }
+    eText.textContent = item.q;
+    eExp.textContent = "";
+    eNext.hidden = true;
+    eBar.style.width = (ei / set.qs.length * 100) + "%";
+    eScore.textContent = "Верно: " + escore;
+    eOpts.innerHTML = "";
+    item.o.forEach(function (text, i) {
+      var b = document.createElement("button");
+      b.className = "opt"; b.type = "button"; b.textContent = text;
+      b.addEventListener("click", function () { pickE(i); });
+      eOpts.appendChild(b);
+    });
+  }
+  function pickE(i) {
+    if (eans) return;
+    eans = true;
+    var set = EXAMS[ekey], item = set.qs[ei];
+    eOpts.querySelectorAll(".opt").forEach(function (b, j) {
+      b.disabled = true;
+      if (j === item.a) b.classList.add("right");
+      else if (j === i) b.classList.add("wrong");
+    });
+    if (i === item.a) escore++;
+    eExp.textContent = (i === item.a ? "Верно. " : "Не совсем. ") + item.e;
+    eScore.textContent = "Верно: " + escore;
+    eNext.textContent = ei === set.qs.length - 1 ? "Показать результат" : "Дальше";
+    eNext.hidden = false;
+  }
+  eNext.addEventListener("click", function () {
+    if (ei >= EXAMS[ekey].qs.length) { ei = 0; escore = 0; } else { ei++; }
+    showE();
+  });
+  var echips = document.querySelectorAll("#exams .chip");
+  echips.forEach(function (c) {
+    c.addEventListener("click", function () {
+      echips.forEach(function (o) { o.setAttribute("aria-pressed", o === c ? "true" : "false"); });
+      ekey = c.getAttribute("data-exam"); ei = 0; escore = 0; showE();
+    });
+  });
+  showE();
+  /* grammar sections */
+  var GRAM = [
+    { id: "tenses", name: "Времена", intro: "В английском 12 основных времён: три времени (настоящее, прошедшее, будущее) на четыре вида (Simple, Continuous, Perfect, Perfect Continuous). Ниже все двенадцать, а также два способа сказать о будущем и о прошлых привычках.", items: [
+      { h: "Present Simple", p: "Регулярные действия, факты, расписания.", f: "I / you / we / they + V · he / she / it + V-s\nВопрос: do / does + подлежащее + V · Отрицание: don't / doesn't + V", ex: ["I work in a bank. — Я работаю в банке.", "She doesn't like coffee. — Она не любит кофе.", "The train leaves at nine. — Поезд отправляется в девять."], s: "always, usually, often, sometimes, never, every day" },
+      { h: "Present Continuous", p: "Действие идёт прямо сейчас, временная ситуация или близкий запланированный план.", f: "am / is / are + V-ing", ex: ["I'm studying right now. — Я сейчас занимаюсь.", "He's staying with friends this week. — На этой неделе он живёт у друзей.", "We're meeting at six. — Мы встречаемся в шесть."], s: "now, at the moment, today, this week, currently" },
+      { h: "Present Perfect", p: "Результат в настоящем, жизненный опыт, действие без точного времени.", f: "have / has + V3 (причастие прошедшего времени)", ex: ["I've lost my keys. — Я потерял ключи.", "Have you ever been to Texas? — Ты бывал в Техасе?", "She has lived here since 2020. — Она живёт здесь с 2020 года."], s: "already, yet, just, ever, never, for, since, so far" },
+      { h: "Present Perfect Continuous", p: "Действие началось в прошлом и длится до сих пор, или только что закончилось, и важна его длительность.", f: "have / has been + V-ing", ex: ["I've been learning English for two years. — Я учу английский уже два года.", "She's been running, so she's tired. — Она бегала, поэтому устала."], s: "for, since, all day, lately, recently, how long" },
+      { h: "Past Simple", p: "Законченное действие в прошлом, обычно с указанием времени.", f: "V2 (правильные: V-ed)\nВопрос: did + подлежащее + V · Отрицание: didn't + V", ex: ["We watched a movie yesterday. — Мы вчера смотрели фильм.", "Did you call him? — Ты ему звонил?", "I didn't go to class. — Я не пошёл на занятие."], s: "yesterday, last week, in 2019, two days ago" },
+      { h: "Past Continuous", p: "Процесс в определённый момент прошлого или фон для другого события.", f: "was / were + V-ing", ex: ["I was cooking when he called. — Я готовил, когда он позвонил.", "At 8 p.m. we were driving home. — В восемь вечера мы ехали домой."], s: "while, when, at that moment, at 5 p.m. yesterday" },
+      { h: "Past Perfect", p: "Действие, которое произошло раньше другого действия в прошлом.", f: "had + V3", ex: ["When I arrived, the movie had already started. — Когда я пришёл, фильм уже начался.", "She said she had finished. — Она сказала, что закончила."], s: "before, after, by the time, already, just" },
+      { h: "Past Perfect Continuous", p: "Длительное действие, которое шло до определённого момента в прошлом.", f: "had been + V-ing", ex: ["I had been waiting for an hour when the bus came. — Я ждал уже час, когда пришёл автобус."], s: "for, since, before, how long" },
+      { h: "Future Simple", p: "Решение в момент речи, предсказание, обещание, предложение помощи.", f: "will + V", ex: ["I'll help you with that. — Я с этим помогу.", "It will rain tomorrow. — Завтра будет дождь.", "I won't tell anyone. — Я никому не скажу."], s: "tomorrow, soon, next week, probably, I think" },
+      { h: "Future Continuous", p: "Процесс, который будет идти в определённый момент будущего.", f: "will be + V-ing", ex: ["This time tomorrow I'll be flying to Boston. — Завтра в это время я буду лететь в Бостон.", "Will you be using the car tonight? — Ты будешь пользоваться машиной вечером?"], s: "at 5 p.m. tomorrow, this time next week" },
+      { h: "Future Perfect", p: "Действие завершится к определённому моменту в будущем.", f: "will have + V3", ex: ["By Friday I will have finished the essay. — К пятнице я закончу эссе."], s: "by, by the time, by next year, before" },
+      { h: "Future Perfect Continuous", p: "Показывает, сколько времени будет длиться действие к моменту в будущем.", f: "will have been + V-ing", ex: ["By June I'll have been studying English for a year. — К июню я буду учить английский уже год."], s: "for, by + момент времени" },
+      { h: "Be going to (и gonna)", p: "Планы и намерения, предсказания по очевидным признакам. В разговорной речи американцы говорят gonna.", f: "am / is / are going to + V", ex: ["I'm going to apply to a US college. — Я собираюсь подавать документы в американский колледж.", "Look at those clouds, it's gonna rain. — Посмотри на тучи, будет дождь."], s: "tonight, next year, look!, I've decided" },
+      { h: "Used to и would", p: "Привычки и состояния в прошлом, которых больше нет. Would только для повторяющихся действий, used to ещё и для состояний.", f: "used to + V · would + V", ex: ["I used to live in Chicago. — Раньше я жил в Чикаго.", "Every summer we would go to the lake. — Каждое лето мы ездили на озеро."], s: "when I was a kid, back then, every summer" }
+    ] },
+    { id: "word-formation", name: "Словообразование", intro: "Слова в английском строят из корня, приставок и суффиксов. Зная их, вы угадываете значения новых слов и быстрее растите словарь.", items: [
+      { h: "Суффиксы существительных", p: "Показывают, что слово называет человека, действие, качество или состояние.", f: "-er / -or (тот, кто делает) · -ist · -ion / -tion / -sion · -ment · -ness · -ity · -ship · -hood · -ance / -ence · -ism · -ee", ex: ["teach → teacher — учитель", "act → actor — актёр", "art → artist — художник", "decide → decision — решение", "move → movement — движение", "happy → happiness — счастье", "able → ability — способность", "friend → friendship — дружба", "child → childhood — детство", "important → importance — важность", "interview → interviewee — тот, у кого берут интервью"] },
+      { h: "Суффиксы глаголов", p: "Превращают прилагательные и существительные в глаголы.", f: "-ize / -ise · -ify · -en · -ate", ex: ["modern → modernize — модернизировать", "simple → simplify — упрощать", "wide → widen — расширять", "active → activate — активировать"] },
+      { h: "Суффиксы прилагательных", p: "Образуют прилагательные от существительных и глаголов.", f: "-ful · -less · -able / -ible · -al · -ous · -ive · -ic · -ish · -y · -ent / -ant", ex: ["care → careful / careless — осторожный / беспечный", "enjoy → enjoyable — приятный", "nation → national — национальный", "danger → dangerous — опасный", "create → creative — творческий", "history → historic — исторический", "child → childish — ребяческий", "rain → rainy — дождливый"] },
+      { h: "Суффиксы наречий", p: "Чаще всего наречие образуют от прилагательного с помощью -ly.", f: "-ly · -ward(s) · -wise", ex: ["quick → quickly — быстро", "home → homeward — домой", "clock → clockwise — по часовой стрелке", "Исключения: fast, hard, late — наречия без -ly. Hardly значит «едва»."] },
+      { h: "Приставки с отрицанием", p: "Меняют смысл на противоположный. Перед p, b, m пишут im-, перед l пишут il-, перед r пишут ir-.", f: "un- · in- · im- · il- · ir- · dis- · non- · mis-", ex: ["happy → unhappy — несчастный", "correct → incorrect — неправильный", "possible → impossible — невозможный", "legal → illegal — незаконный", "regular → irregular — нерегулярный", "agree → disagree — не соглашаться", "fiction → nonfiction — документальная литература", "understand → misunderstand — понять неправильно"] },
+      { h: "Приставки действия и степени", p: "Показывают повтор, обратное действие или избыток и недостаток.", f: "re- · de- · un- · over- · under- · out-", ex: ["write → rewrite — переписать", "code → decode — расшифровать", "lock → unlock — отпереть", "eat → overeat — переедать", "estimate → underestimate — недооценивать", "grow → outgrow — вырасти из чего-то"] },
+      { h: "Приставки места, времени и количества", p: "Уточняют, где, когда или сколько.", f: "pre- · post- · inter- · sub- · super- · anti- · co- · ex- · semi- · multi- · mid-", ex: ["view → preview — предварительный просмотр", "war → postwar — послевоенный", "national → international — международный", "way → subway — метро", "market → supermarket — супермаркет", "worker → coworker — коллега", "president → ex-president — бывший президент", "final → semifinal — полуфинал", "cultural → multicultural — многокультурный"] },
+      { h: "Сложные слова", p: "Два слова соединяются в одно. Пишутся слитно, раздельно или через дефис, поэтому проверяйте написание в словаре.", f: "noun + noun · adjective + noun · verb + noun · adjective + participle", ex: ["note + book → notebook — тетрадь", "black + board → blackboard — доска", "swimming + pool → swimming pool — бассейн", "hair + cut → haircut — стрижка", "well + known → well-known — известный", "part + time → part-time — неполный рабочий день", "mother + in + law → mother-in-law — свекровь, тёща"] },
+      { h: "Конверсия", p: "Слово меняет часть речи, а форма остаётся прежней. Так легко появляются новые глаголы.", f: "noun → verb · verb → noun · adjective → verb", ex: ["a text → to text — сообщение → писать сообщение", "a Google → to google — искать в интернете", "water → to water — вода → поливать", "a run → to run — пробежка → бегать", "an email → to email — письмо → отправить письмо", "Ударение иногда меняется: a REcord (запись) и to reCORD (записывать)."] },
+      { h: "Сокращения и слияния", p: "Слова укорачивают или склеивают из частей. В американской речи это очень частое явление.", f: "clipping · blends · acronyms · initialisms", ex: ["gymnasium → gym — спортзал", "refrigerator → fridge — холодильник", "breakfast + lunch → brunch — поздний завтрак", "smoke + fog → smog — смог", "web + seminar → webinar — вебинар", "ASAP (as soon as possible) — как можно скорее", "GPA (grade point average) — средний балл", "NASA — читается как слово, а не по буквам"] },
+      { h: "Обратное словообразование", p: "Из длинного слова делают короткое, отбрасывая суффикс. Так появляются многие глаголы.", f: "noun → verb без суффикса", ex: ["editor → edit — редактировать", "babysitter → babysit — сидеть с ребёнком", "enthusiasm → enthuse — восторгаться", "burglar → burgle — грабить дом"] },
+      { h: "Семья слов", p: "От одного корня образуется целая группа слов разных частей речи. Это сильно облегчает запоминание.", f: "корень + разные суффиксы и приставки", ex: ["economy → economic → economical → economist → economics", "decide → decision → decisive → decisively → undecided", "success → succeed → successful → successfully → unsuccessful", "Economic относится к экономике, economical значит «экономный»."] },
+      { h: "Орфография при добавлении суффиксов", p: "Три правила, которые спасают от ошибок.", f: "немое -e отпадает · согласная удваивается · y → i", ex: ["make → making (немое e отпало)", "run → running, big → bigger (согласная удвоилась)", "happy → happiness, carry → carried (y → i)", "Для -ly: true → truly, full → fully, но sad → sadly"] }
+    ] },
+    { id: "articles", name: "Артикли", intro: "Артикль стоит перед существительным и показывает, знаем ли мы, о каком именно предмете идёт речь.", items: [
+      { h: "A и an", p: "Один из многих, предмет назван впервые. Выбор между a и an зависит от звука, а не от буквы.", f: "a + согласный звук · an + гласный звук", ex: ["a book — книга", "an apple — яблоко", "an hour — час (h не читается)", "a university — университет (первый звук /j/)"] },
+      { h: "The", p: "Конкретный предмет, который известен обоим собеседникам, единственный в своём роде или названный в превосходной степени.", f: "the + существительное", ex: ["I bought a book. The book is great. — Я купил книгу. Книга отличная.", "the sun, the Internet — единственные в своём роде", "the best idea — лучшая идея", "Close the door, please. — Закрой дверь, пожалуйста."] },
+      { h: "Нулевой артикль", p: "Артикль не нужен с неисчисляемыми и множественными существительными в общем смысле, с языками, видами спорта, приёмами пищи и именами.", f: "Ø + существительное", ex: ["I love music. — Я люблю музыку.", "She speaks Spanish. — Она говорит по-испански.", "We play soccer on Sundays. — По воскресеньям мы играем в футбол.", "Let's have lunch. — Давай пообедаем."] },
+      { h: "Устойчивые выражения", p: "Некоторые фразы нужно запомнить целиком. В американском варианте есть отличия от британского.", f: "go to school · go to work · go to bed · in the hospital", ex: ["go to school — идти учиться (в школу как место учёбы)", "He's in the hospital. — Он в больнице. (США; в Британии in hospital)", "on the weekend — в выходные (США; в Британии at the weekend)"] }
+    ] },
+    { id: "modals", name: "Модальные глаголы", intro: "После модальных глаголов идёт инфинитив без to. Они не меняются по лицам и не принимают -s.", items: [
+      { h: "Can и could", p: "Can: умение, возможность, неформальное разрешение. Could: умение в прошлом и вежливая просьба.", f: "can / could + V", ex: ["I can swim. — Я умею плавать.", "Could you help me? — Не могли бы вы мне помочь?", "When I was five, I could read. — В пять лет я уже умел читать."] },
+      { h: "May и might", p: "Возможность и разрешение. Might даёт меньше уверенности. May в просьбах звучит формально.", f: "may / might + V", ex: ["It might rain later. — Позже может пойти дождь.", "May I come in? — Можно войти?"] },
+      { h: "Must и have to", p: "Must: сильная необходимость или уверенность. Have to: внешнее обязательство. В американском английском чаще говорят have to и have got to.", f: "must + V · have to + V", ex: ["You must see this. — Ты обязан это увидеть.", "I have to work tomorrow. — Мне завтра нужно работать.", "She must be tired. — Она, должно быть, устала."] },
+      { h: "Mustn't и don't have to", p: "Разные значения. Mustn't значит «нельзя», а don't have to значит «не нужно, но можно».", f: "mustn't + V · don't have to + V", ex: ["You mustn't touch it. — Это нельзя трогать.", "You don't have to come. — Тебе необязательно приходить."] },
+      { h: "Should и ought to", p: "Совет и рекомендация. В американском английском should встречается намного чаще, чем ought to.", f: "should + V", ex: ["You should see a doctor. — Тебе стоит сходить к врачу.", "He shouldn't drive so fast. — Ему не стоит так быстро ездить."] },
+      { h: "Would", p: "Вежливые просьбы, предложения, привычки в прошлом и условные предложения.", f: "would + V", ex: ["Would you like some coffee? — Хотите кофе?", "I would help if I could. — Я бы помог, если бы мог."] },
+      { h: "Had better", p: "Сильный совет с предупреждением о последствиях.", f: "had better + V", ex: ["You'd better hurry. — Тебе лучше поторопиться.", "We'd better not be late. — Нам лучше не опаздывать."] }
+    ] },
+    { id: "conditionals", name: "Условные предложения", intro: "Условные предложения состоят из условия (if) и результата. Тип зависит от того, насколько ситуация реальна.", items: [
+      { h: "Zero Conditional", p: "Общие истины и законы природы.", f: "If + Present Simple, Present Simple", ex: ["If you heat ice, it melts. — Если нагреть лёд, он тает."] },
+      { h: "First Conditional", p: "Реальное условие и вероятный результат в будущем.", f: "If + Present Simple, will + V", ex: ["If it rains, we'll stay home. — Если пойдёт дождь, мы останемся дома.", "Не говорим: If it will rain."] },
+      { h: "Second Conditional", p: "Нереальная или маловероятная ситуация в настоящем или будущем. После if для всех лиц допустимо were.", f: "If + Past Simple, would + V", ex: ["If I had more time, I would travel. — Будь у меня больше времени, я бы путешествовал.", "If I were you, I'd apply. — На твоём месте я бы подал документы."] },
+      { h: "Third Conditional", p: "Нереальная ситуация в прошлом, сожаление.", f: "If + Past Perfect, would have + V3", ex: ["If I had studied, I would have passed. — Если бы я занимался, я бы сдал."] },
+      { h: "Mixed Conditional", p: "Условие в прошлом, а результат в настоящем.", f: "If + Past Perfect, would + V", ex: ["If I had taken that job, I would be rich now. — Если бы я принял ту работу, сейчас был бы богат."] },
+      { h: "Wish и if only", p: "Желание изменить настоящее или прошлое, раздражение из-за чужого поведения.", f: "wish + Past Simple · wish + Past Perfect · wish + would", ex: ["I wish I had a car. — Жаль, что у меня нет машины.", "I wish I had called. — Жаль, что я не позвонил.", "I wish he would stop. — Хотел бы я, чтобы он перестал."] },
+      { h: "Unless и as long as", p: "Unless значит «если не». As long as значит «при условии, что».", f: "unless + утверждение · as long as + Present Simple", ex: ["Unless you hurry, you'll be late. — Если не поторопишься, опоздаешь.", "You can go as long as you finish your homework. — Можешь идти при условии, что сделал уроки."] }
+    ] },
+    { id: "passive", name: "Пассивный залог", intro: "Пассив используют, когда важнее действие или результат, а не тот, кто его совершает.", items: [
+      { h: "Как строится", p: "Нужна форма be в том времени, которое вам нужно, и причастие V3. Исполнителя добавляют через by.", f: "be + V3 (+ by + исполнитель)", ex: ["The book was written by Orwell. — Книга была написана Оруэллом.", "English is spoken worldwide. — На английском говорят по всему миру."] },
+      { h: "Формы по временам", p: "Меняется только форма be.", f: "Present Simple: is made · Past Simple: was made · Present Perfect: has been made · Future: will be made · Present Continuous: is being made · Past Continuous: was being made · Modal: can be made", ex: ["The cars are made in Detroit. — Эти машины делают в Детройте.", "The house was built in 1950. — Дом построили в 1950 году.", "The report has been sent. — Отчёт отправлен.", "It will be finished tomorrow. — Это закончат завтра.", "The bridge is being repaired. — Мост сейчас ремонтируют."] },
+      { h: "Вопросы и отрицания", p: "Первый вспомогательный глагол выходит вперёд или получает not.", f: "Was it finished? · It wasn't finished.", ex: ["Was the room cleaned? — Комнату убрали?", "The letter wasn't sent. — Письмо не отправили."] },
+      { h: "Have something done", p: "Когда кто-то делает что-то для нас, а мы сами этого не делаем.", f: "have / get + объект + V3", ex: ["I had my hair cut. — Я подстригся (меня подстригли).", "We're getting the car fixed. — Нам чинят машину."] },
+      { h: "Get-passive", p: "В разговорной речи get часто заменяет be, особенно если что-то случилось неожиданно.", f: "get + V3", ex: ["He got fired last week. — Его уволили на прошлой неделе.", "My phone got stolen. — У меня украли телефон."] }
+    ] },
+    { id: "reported", name: "Косвенная речь", intro: "Косвенная речь пересказывает чужие слова. Обычно время в придаточном «сдвигается» на шаг назад.", items: [
+      { h: "Сдвиг времён", p: "Если глагол речи в прошедшем (said, told), времена в пересказе смещаются.", f: "Present Simple → Past Simple\nPresent Continuous → Past Continuous\nPresent Perfect → Past Perfect\nPast Simple → Past Perfect\nwill → would · can → could", ex: ["«I work here.» → She said she worked there.", "«I'm leaving.» → He said he was leaving.", "«I've finished.» → She said she had finished.", "«I'll call.» → He said he would call."] },
+      { h: "Слова времени и места", p: "Указатели тоже меняются, если пересказываем в другой момент.", f: "now → then · today → that day · tomorrow → the next day · yesterday → the day before · here → there · this → that", ex: ["«I'll see you tomorrow.» → He said he would see me the next day."] },
+      { h: "Say и tell", p: "После tell обязательно называют, кому говорят. После say этого не нужно.", f: "say + что · tell + кому + что", ex: ["She said she was tired. — Она сказала, что устала.", "She told me she was tired. — Она сказала мне, что устала."] },
+      { h: "Вопросы", p: "В пересказе порядок слов прямой, вопросительный знак не ставим. Для вопросов без вопросительного слова нужны if или whether.", f: "asked + if / whether + порядок как в утверждении", ex: ["«Where do you live?» → He asked where I lived.", "«Are you ready?» → She asked if I was ready."] },
+      { h: "Просьбы и приказы", p: "Используем инфинитив с to.", f: "told / asked + кого + to + V", ex: ["«Close the door.» → He told me to close the door.", "«Don't be late.» → She told us not to be late."] }
+    ] },
+    { id: "gerund-infinitive", name: "Герундий и инфинитив", intro: "После многих глаголов нужно выбрать между -ing и to + глагол. Здесь самые частые случаи.", items: [
+      { h: "Глаголы + герундий", p: "После этих глаголов ставим форму -ing.", f: "enjoy · avoid · finish · keep · mind · suggest · consider · practice · give up", ex: ["I enjoy cooking. — Мне нравится готовить.", "She finished writing the essay. — Она закончила писать эссе.", "Would you mind opening the window? — Вы не откроете окно?"] },
+      { h: "Глаголы + инфинитив с to", p: "После этих глаголов ставим to + V.", f: "want · decide · hope · plan · agree · afford · manage · refuse · promise · learn", ex: ["I want to study economics. — Я хочу изучать экономику.", "He decided to move. — Он решил переехать.", "We can't afford to buy it. — Мы не можем себе этого позволить."] },
+      { h: "Глаголы с обеими формами", p: "Like, love, hate, prefer, start, begin употребляются с любой формой почти без разницы в смысле.", f: "like / love / start + V-ing или to V", ex: ["I love swimming. = I love to swim. — Я люблю плавать."] },
+      { h: "Разный смысл", p: "Remember, forget, stop, try меняют значение в зависимости от формы.", f: "stop + V-ing (прекратить) · stop + to V (остановиться, чтобы)", ex: ["I stopped smoking. — Я бросил курить.", "I stopped to smoke. — Я остановился, чтобы покурить.", "I remember locking the door. — Я помню, что запер дверь.", "Remember to lock the door. — Не забудь запереть дверь."] },
+      { h: "После предлогов", p: "После любого предлога всегда ставим герундий.", f: "предлог + V-ing", ex: ["She's good at drawing. — Она хорошо рисует.", "Thanks for helping. — Спасибо за помощь.", "I'm looking forward to seeing you. — Жду встречи с тобой."] },
+      { h: "Make, let и help", p: "После make и let идёт инфинитив без to. После help можно с to и без.", f: "make / let + кого + V", ex: ["He made me laugh. — Он меня рассмешил.", "Let me help you. — Позволь мне помочь.", "She helped me (to) move. — Она помогла мне переехать."] }
+    ] },
+    { id: "comparison", name: "Степени сравнения", intro: "Сравнивают прилагательные и наречия. Способ зависит от длины слова.", items: [
+      { h: "Короткие слова", p: "Односложные и некоторые двусложные прилагательные получают -er и -est. Перед -er и -est иногда удваивается согласная или y превращается в i.", f: "-er than · the -est", ex: ["tall → taller → the tallest", "big → bigger → the biggest", "happy → happier → the happiest"] },
+      { h: "Длинные слова", p: "Длинные прилагательные (от двух слогов и больше) строятся с more и most.", f: "more + adj + than · the most + adj", ex: ["interesting → more interesting → the most interesting", "expensive → more expensive → the most expensive"] },
+      { h: "Исключения", p: "Эти слова нужно запомнить.", f: "good → better → best · bad → worse → worst · far → farther / further → farthest / furthest · little → less → least · many / much → more → most", ex: ["This is the best pizza in town. — Это лучшая пицца в городе.", "Traffic is worse today. — Сегодня пробки хуже."] },
+      { h: "As … as", p: "Сравнение «такой же». Отрицание not as … as значит «не такой, как».", f: "as + adj + as · not as + adj + as", ex: ["She is as tall as her brother. — Она такая же высокая, как её брат.", "It's not as cold as yesterday. — Не так холодно, как вчера."] },
+      { h: "The … the …", p: "Чем больше одно, тем больше другое.", f: "the + сравнительная степень, the + сравнительная степень", ex: ["The more you practice, the better you get. — Чем больше практикуешься, тем лучше получается."] },
+      { h: "Усилители", p: "Much, far, a lot усиливают сравнение, а a bit и slightly ослабляют его. Very с сравнительной степенью не используют.", f: "much / far / a lot + comparative · a bit / slightly + comparative", ex: ["This is much better. — Это гораздо лучше.", "It's slightly cheaper. — Чуть дешевле."] }
+    ] },
+    { id: "questions", name: "Вопросы и порядок слов", intro: "Порядок слов в английском строгий: подлежащее, сказуемое, дополнение. В вопросах порядок меняется.", items: [
+      { h: "Общие вопросы", p: "Вспомогательный глагол выходит на первое место.", f: "do / does / did / is / are / have + подлежащее + ...", ex: ["Do you like pizza? — Ты любишь пиццу?", "Have you finished? — Ты закончил?"] },
+      { h: "Специальные вопросы", p: "Вопросительное слово ставим в начало, затем порядок как в общем вопросе.", f: "what / where / when / why / how + вспомогательный + подлежащее + V", ex: ["Where do you live? — Где ты живёшь?", "Why did she leave? — Почему она ушла?"] },
+      { h: "Вопросы к подлежащему", p: "Вспомогательный глагол не нужен, потому что порядок такой же, как в утверждении.", f: "who / what + V", ex: ["Who called you? — Кто тебе звонил?", "What happened? — Что случилось?"] },
+      { h: "Косвенные вопросы", p: "Вежливые вопросы после фраз вроде Do you know или Could you tell me. Порядок слов прямой.", f: "Do you know + where / when / if + подлежащее + V", ex: ["Do you know where he is? — Ты знаешь, где он?", "Could you tell me what time it is? — Не подскажете, сколько времени?"] },
+      { h: "Разделительные вопросы", p: "Короткий вопрос в конце, чтобы подтвердить сказанное. Если утверждение положительное, хвост отрицательный, и наоборот.", f: "утверждение, + вспомогательный + not + местоимение?", ex: ["You're coming, aren't you? — Ты придёшь, да?", "She doesn't know, does she? — Она не знает, да?"] },
+      { h: "Порядок прилагательных", p: "Несколько прилагательных ставят в определённом порядке.", f: "мнение → размер → возраст → форма → цвет → происхождение → материал → назначение", ex: ["a beautiful small old round red Italian leather bag — красивая маленькая старая круглая красная итальянская кожаная сумка"] },
+      { h: "Место наречий", p: "Наречия частоты стоят перед основным глаголом и после to be.", f: "подлежащее + always / usually / never + V · be + always", ex: ["I always drink coffee. — Я всегда пью кофе.", "He is never late. — Он никогда не опаздывает."] }
+    ] },
+    { id: "prepositions", name: "Предлоги", intro: "Предлоги времени и места нужно запоминать группами. Отдельно отмечено, чем отличается американский вариант.", items: [
+      { h: "Предлоги времени: at, on, in", p: "At для точного времени, on для дней и дат, in для месяцев, лет и частей суток.", f: "at 5 p.m. · on Monday · in July", ex: ["at night — ночью", "on May 5 — пятого мая", "in 2026 — в 2026 году", "in the morning — утром"] },
+      { h: "Предлоги места: at, on, in", p: "At для точки, on для поверхности, in для замкнутого пространства.", f: "at the station · on the table · in the room", ex: ["at school — в школе", "on the second floor — на втором этаже", "in New York — в Нью-Йорке"] },
+      { h: "For, since, during", p: "For показывает длительность, since называет начало, during отвечает на вопрос «когда внутри периода».", f: "for + период · since + момент · during + событие", ex: ["for three years — три года", "since 2020 — с 2020 года", "during the summer — в течение лета"] },
+      { h: "Движение: to, into, through", p: "To называет направление, into показывает вход внутрь, through говорит о проходе насквозь.", f: "to + место · into + место · through + место", ex: ["I'm going to the store. — Иду в магазин.", "She walked into the room. — Она вошла в комнату.", "We drove through the tunnel. — Мы проехали через туннель."] },
+      { h: "Американские особенности", p: "В США некоторые предлоги отличаются от британских.", f: "on the weekend · different than / from · Monday through Friday", ex: ["on the weekend — в выходные (Brit.: at the weekend)", "different than (разг.) и different from — отличается от", "Monday through Friday — с понедельника по пятницу (Brit.: Monday to Friday)", "on a team — в команде (Brit.: in a team)"] }
+    ] }
+  ];
+
+  var gtabs = document.getElementById("gtabs"), gbody = document.getElementById("gbody");
+  GRAM.forEach(function (sec) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.setAttribute("data-g", sec.id); b.setAttribute("aria-pressed", "false");
+    b.textContent = sec.name;
+    b.addEventListener("click", function () { location.hash = "grammar-" + sec.id; });
+    gtabs.appendChild(b);
+  });
+  function renderGrammar() {
+    var sec = GRAM.filter(function (s) { return s.id === gramSel; })[0] || GRAM[0];
+    gtabs.querySelectorAll(".chip").forEach(function (c) { c.setAttribute("aria-pressed", c.getAttribute("data-g") === sec.id ? "true" : "false"); });
+    gbody.innerHTML = "";
+    var intro = document.createElement("p"); intro.className = "gintro"; intro.textContent = sec.intro; gbody.appendChild(intro);
+    var grid = document.createElement("div"); grid.className = "tips";
+    sec.items.forEach(function (it) {
+      var d = document.createElement("div"); d.className = "tip gcard glass";
+      var h = document.createElement("h3"); h.textContent = it.h; d.appendChild(h);
+      var p = document.createElement("p"); p.textContent = it.p; d.appendChild(p);
+      if (it.f) { var f = document.createElement("code"); f.className = "formula"; f.textContent = it.f; d.appendChild(f); }
+      if (it.ex && it.ex.length) {
+        var ul = document.createElement("ul");
+        it.ex.forEach(function (x) { var li = document.createElement("li"); li.textContent = x; ul.appendChild(li); });
+        d.appendChild(ul);
+      }
+      if (it.s) {
+        var s = document.createElement("div"); s.className = "sig";
+        var sb = document.createElement("b"); sb.textContent = "Маркеры: ";
+        s.appendChild(sb); s.appendChild(document.createTextNode(it.s)); d.appendChild(s);
+      }
+      grid.appendChild(d);
+    });
+    gbody.appendChild(grid);
+  }
+
+  /* history of words */
+  var hTab = "learned";
+  var hList = document.getElementById("hist-list"), hStats = document.getElementById("hist-stats");
+  var hChips = document.querySelectorAll("#history .chip");
+  function fmtDate(ts) {
+    try { return new Date(ts).toLocaleDateString("ru-RU", { day: "numeric", month: "long" }); } catch (e) { return ""; }
+  }
+  function mkBtn(label, cls, fn) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = cls; b.textContent = label;
+    b.addEventListener("click", fn);
+    return b;
+  }
+  function histRow(en, info, kind) {
+    var row = document.createElement("div"); row.className = "hrow";
+    var main = document.createElement("div"); main.className = "hmain";
+    var w = document.createElement("b"); w.textContent = en;
+    var tr = document.createElement("span"); tr.textContent = info.ru || "";
+    var meta = document.createElement("small");
+    var bits = [fmtDate(info.ts)];
+    if (kind === "remembered" && info.n > 1) bits.push("повторов: " + info.n);
+    if (info.lvl) bits.push(info.lvl);
+    meta.textContent = bits.filter(Boolean).join(" · ");
+    main.appendChild(w); main.appendChild(tr); main.appendChild(meta);
+    var act = document.createElement("div"); act.className = "hact";
+    var ox = document.createElement("a");
+    ox.className = "btn ghost sm"; ox.href = OX + encodeURIComponent(en); ox.target = "_blank"; ox.rel = "noopener noreferrer"; ox.textContent = "Oxford ↗";
+    act.appendChild(ox);
+    if (kind === "learned") {
+      act.appendChild(mkBtn("Вернуть в колоду", "mini", function () { delete st.learned[en]; save(); queue = []; renderHistory(); }));
+    } else {
+      act.appendChild(mkBtn("Выучил", "mini ok", function () {
+        st.learned[en] = { ru: info.ru, lvl: info.lvl, ts: Date.now() };
+        delete st.remembered[en]; save(); renderHistory();
+      }));
+      act.appendChild(mkBtn("Убрать", "mini", function () { delete st.remembered[en]; save(); renderHistory(); }));
+    }
+    row.appendChild(main); row.appendChild(act);
+    return row;
+  }
+  function renderHistory() {
+    var L = Object.keys(st.learned), R = Object.keys(st.remembered);
+    hChips.forEach(function (c) {
+      var k = c.getAttribute("data-h");
+      c.textContent = (k === "learned" ? "Выученные (" + L.length + ")" : "Запомненные (" + R.length + ")");
+      c.setAttribute("aria-pressed", k === hTab ? "true" : "false");
+    });
+    var inDeck = allWords().filter(function (x) { return !st.learned[x.en]; }).length;
+    hStats.textContent = "В колоде: " + inDeck + " · всего слов: " + allWords().length;
+    var src = hTab === "learned" ? st.learned : st.remembered;
+    var keys = Object.keys(src).sort(function (a, b) { return (src[b].ts || 0) - (src[a].ts || 0); });
+    hList.innerHTML = "";
+    if (!keys.length) {
+      var e = document.createElement("div"); e.className = "empty";
+      e.textContent = hTab === "learned" ? "Пока пусто. Нажмите «Выучил» на карточке, и слово появится здесь." : "Пока пусто. Нажмите «Запомнил» на карточке, и слово появится здесь.";
+      hList.appendChild(e);
+      return;
+    }
+    keys.forEach(function (k) { hList.appendChild(histRow(k, src[k], hTab)); });
+  }
+  hChips.forEach(function (c) {
+    c.addEventListener("click", function () { hTab = c.getAttribute("data-h"); renderHistory(); });
+  });
+  var clr = document.getElementById("hist-clear"), clrArmed = false, clrTimer = null;
+  clr.addEventListener("click", function () {
+    if (!clrArmed) {
+      clrArmed = true; clr.textContent = "Точно очистить?";
+      clrTimer = setTimeout(function () { clrArmed = false; clr.textContent = "Очистить историю"; }, 4000);
+      return;
+    }
+    clearTimeout(clrTimer); clrArmed = false; clr.textContent = "Очистить историю";
+    st.learned = {}; st.remembered = {}; save(); queue = []; renderHistory();
+  });
+
+  /* study plan */
+  var ACT = {
+    words: { n: "Слова", w: 3, d: function (m) { return "Карточки: " + Math.max(3, Math.round(m / 3)) + " новых слов и повтор вчерашних."; } },
+    listen: { n: "Слушание", w: 3, d: function () { return "Подкаст или видео на американском английском. Повторите вслух 5–10 фраз."; } },
+    grammar: { n: "Грамматика", w: 3, d: function () { return "Один раздел или правило из «Грамматики» и несколько своих примеров."; } },
+    write: { n: "Письмо", w: 2, d: function (m) { return "Напишите " + Math.max(3, Math.round(m / 3)) + " предложений о своём дне."; } },
+    speak: { n: "Речь", w: 2, d: function () { return "Говорите вслух: пересказ дня или разговор с партнёром."; } },
+    test: { n: "Тест", w: 2, d: function () { return "Мини-тест или разминка по экзамену, затем разбор ошибок."; } },
+    watch: { n: "Сериал", w: 4, d: function () { return "Американский сериал без русских субтитров. Выпишите 5 выражений."; } },
+    review: { n: "Повторение", w: 1, d: function () { return "Откройте историю и повторите запомненные слова."; } }
+  };
+  var PLAN = {
+    3: [["Пн", ["words", "grammar"]], ["Ср", ["listen", "speak"]], ["Пт", ["test", "write"]]],
+    5: [["Пн", ["words", "grammar"]], ["Вт", ["listen", "speak"]], ["Ср", ["write", "words"]], ["Чт", ["grammar", "test"]], ["Пт", ["watch", "review"]]],
+    7: [["Пн", ["words", "grammar"]], ["Вт", ["listen", "speak"]], ["Ср", ["grammar", "write"]], ["Чт", ["words", "review"]], ["Пт", ["test", "write"]], ["Сб", ["watch", "words"]], ["Вс", ["speak", "listen"]]]
+  };
+  var HINT_M = {
+    15: "Минимум, который работает, если заниматься регулярно.",
+    30: "Хороший ритм для стабильного прогресса.",
+    60: "Интенсивный режим. Занятие можно разбить на два подхода.",
+    120: "Максимальная нагрузка. Разбейте занятие на два подхода и делайте перерывы."
+  };
+  var HINT_D = {
+    3: "Три дня в неделю: не делайте между занятиями пауз длиннее двух дней.",
+    5: "Пять дней в неделю: выходные остаются на отдых.",
+    7: "Каждый день: так проще выработать привычку."
+  };
+  var planMin = 30, planDays = 5;
+  try {
+    var pp = JSON.parse(localStorage.getItem("lk3y-plan") || "null");
+    if (pp && [15, 30, 60, 120].indexOf(pp.m) >= 0 && [3, 5, 7].indexOf(pp.d) >= 0) { planMin = pp.m; planDays = pp.d; }
+  } catch (e) {}
+  function fmtMin(m) {
+    if (m < 60) return m + " мин";
+    var h = Math.floor(m / 60), r = m % 60;
+    return r ? h + " ч " + r + " мин" : h + " ч";
+  }
+  function splitMin(total, keys) {
+    if (total < 30 || keys.length < 2) return [[keys[0], total]];
+    var w0 = ACT[keys[0]].w, w1 = ACT[keys[1]].w;
+    var a = Math.round(total * w0 / (w0 + w1) / 5) * 5;
+    return [[keys[0], a], [keys[1], total - a]];
+  }
+  var weekEl = document.getElementById("week");
+  var planChips = document.querySelectorAll("#plan .chip");
+  function renderPlan() {
+    planChips.forEach(function (c) {
+      var m = c.getAttribute("data-min"), d = c.getAttribute("data-days");
+      var on = m ? Number(m) === planMin : Number(d) === planDays;
+      c.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    var total = planMin * planDays;
+    document.getElementById("plan-total").textContent = "В неделю: " + fmtMin(total) + " · в месяц около " + Math.round(total * 4.3 / 60) + " ч";
+    document.getElementById("plan-hint").textContent = HINT_M[planMin] + " " + HINT_D[planDays];
+    weekEl.innerHTML = "";
+    PLAN[planDays].forEach(function (day, i) {
+      var box = document.createElement("div");
+      box.className = "day glass float" + (i % 4 ? " d" + (i % 4) : "");
+      var b = document.createElement("b"); b.textContent = day[0]; box.appendChild(b);
+      var ul = document.createElement("ul"); ul.className = "acts";
+      splitMin(planMin, day[1]).forEach(function (pair) {
+        var a = ACT[pair[0]];
+        var li = document.createElement("li");
+        var s = document.createElement("strong"); s.textContent = a.n;
+        var t = document.createElement("span"); t.className = "tm"; t.textContent = fmtMin(pair[1]);
+        var p = document.createElement("p"); p.className = "ad"; p.textContent = a.d(pair[1]);
+        li.appendChild(s); li.appendChild(t); li.appendChild(p); ul.appendChild(li);
+      });
+      box.appendChild(ul);
+      weekEl.appendChild(box);
+    });
+  }
+  planChips.forEach(function (c) {
+    c.addEventListener("click", function () {
+      var m = c.getAttribute("data-min"), d = c.getAttribute("data-days");
+      if (m) planMin = Number(m); else planDays = Number(d);
+      try { localStorage.setItem("lk3y-plan", JSON.stringify({ m: planMin, d: planDays })); } catch (e) {}
+      renderPlan();
+    });
+  });
+  renderPlan();
+
+  route();
+})();
+</script>
+
+</body>
+</html>
