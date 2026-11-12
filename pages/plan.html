@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>План занятий · lowk3y english</title>
+<meta name="description" content="Расписание занятий под ваше время в день и дни в неделю">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../css/style.css">
+<script>try{if(localStorage.getItem("wbw-theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
+</head>
+<body data-page="plan">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="flag" viewBox="0 0 38 20">
+    <rect width="38" height="20" fill="#fff"/>
+    <g fill="#b22234">
+      <rect y="0" width="38" height="1.54"/><rect y="3.08" width="38" height="1.54"/><rect y="6.15" width="38" height="1.54"/>
+      <rect y="9.23" width="38" height="1.54"/><rect y="12.31" width="38" height="1.54"/><rect y="15.38" width="38" height="1.54"/>
+      <rect y="18.46" width="38" height="1.54"/>
+    </g>
+    <rect width="15.2" height="10.77" fill="#3c3b6e"/>
+    <g fill="#fff">
+      <circle cx="2.5" cy="2.1" r="0.7"/><circle cx="6.3" cy="2.1" r="0.7"/><circle cx="10.1" cy="2.1" r="0.7"/><circle cx="13.2" cy="2.1" r="0.7"/>
+      <circle cx="2.5" cy="5.4" r="0.7"/><circle cx="6.3" cy="5.4" r="0.7"/><circle cx="10.1" cy="5.4" r="0.7"/><circle cx="13.2" cy="5.4" r="0.7"/>
+      <circle cx="2.5" cy="8.7" r="0.7"/><circle cx="6.3" cy="8.7" r="0.7"/><circle cx="10.1" cy="8.7" r="0.7"/><circle cx="13.2" cy="8.7" r="0.7"/>
+    </g>
+  </symbol>
+</svg>
+<div class="field" aria-hidden="true"><div class="blob r"></div><div class="blob y"></div><div class="blob b"></div></div>
+
+<div class="wrap">
+  <header class="top">
+    <div class="pill glass">
+      <a class="logo" href="../index.html">lowk3y english</a>
+      <nav aria-label="Разделы">
+        <a href="cards.html" data-nav="cards">Карточки</a>
+        <a href="history.html" data-nav="history">История</a>
+        <a href="quiz.html" data-nav="quiz">Тест</a>
+        <a href="exams.html" data-nav="exams">Экзамены</a>
+        <a href="grammar.html" data-nav="grammar">Грамматика</a>
+        <a href="plan.html" data-nav="plan">План</a>
+      </nav>
+      <button class="theme-btn" id="theme" type="button" aria-label="Переключить тему">Светлая тема</button>
+    </div>
+  </header>
+
+  <main class="view" id="plan">
+    <div class="sec-head">
+      <div>
+        <h2>План занятий</h2>
+        <p>Выберите, сколько времени вы готовы уделять английскому. План пересчитается сразу.</p>
+      </div>
+    </div>
+    <div class="plan-ctl">
+      <div class="grp">
+        <div class="eyebrow">Времени в день</div>
+        <div class="chips glass" role="group" aria-label="Минут в день">
+          <button class="chip" data-min="15" aria-pressed="false">15 мин</button>
+          <button class="chip" data-min="30" aria-pressed="true">30 мин</button>
+          <button class="chip" data-min="60" aria-pressed="false">1 час</button>
+          <button class="chip" data-min="120" aria-pressed="false">2 часа</button>
+        </div>
+      </div>
+      <div class="grp">
+        <div class="eyebrow">Дней в неделю</div>
+        <div class="chips glass" role="group" aria-label="Дней в неделю">
+          <button class="chip" data-days="3" aria-pressed="false">3</button>
+          <button class="chip" data-days="5" aria-pressed="true">5</button>
+          <button class="chip" data-days="7" aria-pressed="false">7</button>
+        </div>
+      </div>
+    </div>
+    <div class="plan-sum glass" aria-live="polite">
+      <b id="plan-total"></b>
+      <p id="plan-hint"></p>
+    </div>
+    <div class="week" id="week"></div>
+  </main>
+
+  <footer class="glass">
+    <span class="fl"><svg class="flag" aria-hidden="true"><use href="#flag" width="100%" height="100%"/></svg>lowk3y english</span>
+    <span>Американский английский для русскоговорящих</span>
+    <a href="https://www.tiktok.com/@lowk3y_stt?_r=1&amp;_t=ZS-9BJfPsSJ08S" target="_blank" rel="noopener noreferrer">TikTok @lowk3y_stt</a>
+  </footer>
+</div>
+
+<script src="../js/common.js"></script>
+<script src="../js/plan.js"></script>
+</body>
+</html>
