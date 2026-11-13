@@ -2,7 +2,7 @@
    Одна строка: название|город|штат (код)|широта|долгота|тип (Государственный или Частный)|категория|э
    Категории: Лига плюща, Топ-вуз, Технический, Свободные искусства, Флагман штата, Другой.
    Последнее поле «э» необязательно: оно значит, что у вуза известная программа по экономике.
-   Координаты приблизительные, до района города. Чтобы добавить вуз, допишите строку в конец. */
+   Координаты приблизительные, до района города. Подборка составлена вручную, это не официальный рейтинг. Чтобы добавить вуз, допишите строку в конец. */
 window.LK = window.LK || {};
 LK.UNIS = `Harvard University|Cambridge|MA|42.377|-71.117|Частный|Лига плюща|э
 Yale University|New Haven|CT|41.311|-72.926|Частный|Лига плюща|э
@@ -304,4 +304,286 @@ University of Colorado Denver|Denver|CO|39.745|-105.002|Государствен
 Utah State University|Logan|UT|41.745|-111.810|Государственный|Другой
 University of Alaska Anchorage|Anchorage|AK|61.190|-149.828|Государственный|Другой
 University of Hawaii at Hilo|Hilo|HI|19.701|-155.081|Государственный|Другой
-University of Guam|Mangilao|GU|13.427|144.800|Государственный|Другой`;
+University of Guam|Mangilao|GU|13.427|144.800|Государственный|Другой
+Samford University|Birmingham|AL|33.464|-86.791|Частный|Другой
+University of South Alabama|Mobile|AL|30.695|-88.178|Государственный|Другой
+University of Alabama in Huntsville|Huntsville|AL|34.723|-86.640|Государственный|Технический
+Arkansas State University|Jonesboro|AR|35.842|-90.675|Государственный|Другой
+University of Central Arkansas|Conway|AR|35.079|-92.459|Государственный|Другой
+University of Arkansas at Little Rock|Little Rock|AR|34.723|-92.339|Государственный|Другой
+Grand Canyon University|Phoenix|AZ|33.511|-112.129|Частный|Другой
+California State University, Long Beach|Long Beach|CA|33.783|-118.114|Государственный|Другой
+California State University, Fullerton|Fullerton|CA|33.883|-117.886|Государственный|Другой
+California State University, Northridge|Northridge|CA|34.240|-118.529|Государственный|Другой
+California State University, Sacramento|Sacramento|CA|38.559|-121.424|Государственный|Другой
+California State Polytechnic University, Pomona|Pomona|CA|34.057|-117.821|Государственный|Технический
+San Francisco State University|San Francisco|CA|37.722|-122.479|Государственный|Другой
+California State University, Chico|Chico|CA|39.729|-121.848|Государственный|Другой
+California State University, Fresno|Fresno|CA|36.812|-119.745|Государственный|Другой
+Humboldt State University (Cal Poly Humboldt)|Arcata|CA|40.875|-124.079|Государственный|Другой
+University of the Pacific|Stockton|CA|37.980|-121.312|Частный|Другой
+University of La Verne|La Verne|CA|34.100|-117.771|Частный|Другой
+Azusa Pacific University|Azusa|CA|34.130|-117.889|Частный|Другой
+Biola University|La Mirada|CA|33.906|-118.019|Частный|Другой
+California Baptist University|Riverside|CA|33.929|-117.426|Частный|Другой
+Saint Mary's College of California|Moraga|CA|37.842|-122.109|Частный|Другой
+Westmont College|Santa Barbara|CA|34.449|-119.665|Частный|Свободные искусства
+Whittier College|Whittier|CA|33.970|-118.025|Частный|Свободные искусства
+University of Redlands|Redlands|CA|34.062|-117.164|Частный|Другой
+Colorado Mesa University|Grand Junction|CO|39.081|-108.552|Государственный|Другой
+University of Colorado Colorado Springs|Colorado Springs|CO|38.893|-104.801|Государственный|Другой
+University of Northern Colorado|Greeley|CO|40.403|-104.697|Государственный|Другой
+Regis University|Denver|CO|39.790|-105.036|Частный|Другой
+Central Connecticut State University|New Britain|CT|41.689|-72.766|Государственный|Другой
+Sacred Heart University|Fairfield|CT|41.221|-73.243|Частный|Другой
+University of Hartford|West Hartford|CT|41.795|-72.708|Частный|Другой
+University of New Haven|West Haven|CT|41.292|-72.964|Частный|Другой
+Western Connecticut State University|Danbury|CT|41.401|-73.443|Государственный|Другой
+Delaware State University|Dover|DE|39.185|-75.543|Государственный|Другой
+Gallaudet University|Washington|DC|38.907|-76.994|Частный|Другой
+University of the District of Columbia|Washington|DC|38.944|-77.064|Государственный|Другой
+Barry University|Miami Shores|FL|25.884|-80.166|Частный|Другой
+Embry-Riddle Aeronautical University|Daytona Beach|FL|29.188|-81.049|Частный|Технический
+Florida Atlantic University|Boca Raton|FL|26.372|-80.101|Государственный|Другой
+Florida Gulf Coast University|Fort Myers|FL|26.464|-81.774|Государственный|Другой
+Florida Institute of Technology|Melbourne|FL|28.062|-80.623|Частный|Технический
+Nova Southeastern University|Fort Lauderdale|FL|26.081|-80.250|Частный|Другой
+Rollins College|Winter Park|FL|28.595|-81.349|Частный|Свободные искусства
+Stetson University|DeLand|FL|29.037|-81.304|Частный|Другой
+University of North Florida|Jacksonville|FL|30.272|-81.508|Государственный|Другой
+University of West Florida|Pensacola|FL|30.549|-87.217|Государственный|Другой
+Augusta University|Augusta|GA|33.469|-81.987|Государственный|Другой
+Georgia Southern University|Statesboro|GA|32.420|-81.784|Государственный|Другой
+Kennesaw State University|Kennesaw|GA|34.038|-84.583|Государственный|Другой
+Mercer University|Macon|GA|32.829|-83.650|Частный|Другой
+University of North Georgia|Dahlonega|GA|34.526|-83.985|Государственный|Другой
+University of West Georgia|Carrollton|GA|33.575|-85.099|Государственный|Другой
+Valdosta State University|Valdosta|GA|30.850|-83.289|Государственный|Другой
+Brigham Young University-Hawaii|Laie|HI|21.640|-157.924|Частный|Другой
+Hawaii Pacific University|Honolulu|HI|21.307|-157.862|Частный|Другой
+Idaho State University|Pocatello|ID|42.862|-112.431|Государственный|Другой
+Bradley University|Peoria|IL|40.698|-89.617|Частный|Другой
+Elmhurst University|Elmhurst|IL|41.890|-87.943|Частный|Другой
+Illinois Wesleyan University|Bloomington|IL|40.485|-88.987|Частный|Свободные искусства
+Knox College|Galesburg|IL|40.948|-90.372|Частный|Свободные искусства
+Lake Forest College|Lake Forest|IL|42.236|-87.842|Частный|Свободные искусства
+North Central College|Naperville|IL|41.775|-88.146|Частный|Другой
+Southern Illinois University Carbondale|Carbondale|IL|37.711|-89.221|Государственный|Другой
+University of Illinois Chicago|Chicago|IL|41.872|-87.648|Государственный|Другой|э
+Western Illinois University|Macomb|IL|40.470|-90.682|Государственный|Другой
+DePauw University|Greencastle|IN|39.640|-86.862|Частный|Свободные искусства
+Earlham College|Richmond|IN|39.823|-84.909|Частный|Свободные искусства
+Indiana State University|Terre Haute|IN|39.470|-87.405|Государственный|Другой
+Indiana University-Purdue University Indianapolis|Indianapolis|IN|39.774|-86.175|Государственный|Другой
+University of Evansville|Evansville|IN|37.975|-87.534|Частный|Другой
+University of Indianapolis|Indianapolis|IN|39.697|-86.126|Частный|Другой
+Valparaiso University|Valparaiso|IN|41.463|-87.042|Частный|Другой
+Coe College|Cedar Rapids|IA|41.987|-91.652|Частный|Свободные искусства
+Cornell College|Mount Vernon|IA|41.923|-91.426|Частный|Свободные искусства
+University of Northern Iowa|Cedar Falls|IA|42.514|-92.463|Государственный|Другой
+Emporia State University|Emporia|KS|38.405|-96.181|Государственный|Другой
+Wichita State University|Wichita|KS|37.718|-97.294|Государственный|Другой
+Western Kentucky University|Bowling Green|KY|36.985|-86.455|Государственный|Другой
+Eastern Kentucky University|Richmond|KY|37.739|-84.295|Государственный|Другой
+Northern Kentucky University|Highland Heights|KY|39.032|-84.465|Государственный|Другой
+Murray State University|Murray|KY|36.614|-88.320|Государственный|Другой
+Louisiana Tech University|Ruston|LA|32.526|-92.649|Государственный|Технический
+Loyola University New Orleans|New Orleans|LA|29.935|-90.121|Частный|Другой
+McNeese State University|Lake Charles|LA|30.178|-93.215|Государственный|Другой
+University of New Orleans|New Orleans|LA|30.029|-90.067|Государственный|Другой
+University of Louisiana at Monroe|Monroe|LA|32.528|-92.074|Государственный|Другой
+University of Southern Maine|Portland|ME|43.668|-70.267|Государственный|Другой
+Bowie State University|Bowie|MD|39.021|-76.947|Государственный|Другой
+Loyola University Maryland|Baltimore|MD|39.346|-76.623|Частный|Другой
+McDaniel College|Westminster|MD|39.570|-76.998|Частный|Свободные искусства
+Morgan State University|Baltimore|MD|39.343|-76.583|Государственный|Другой
+Salisbury University|Salisbury|MD|38.343|-75.607|Государственный|Другой
+St. John's College|Annapolis|MD|38.980|-76.490|Частный|Свободные искусства
+Stevenson University|Owings Mills|MD|39.411|-76.774|Частный|Другой
+University of Baltimore|Baltimore|MD|39.307|-76.617|Государственный|Другой
+Assumption University|Worcester|MA|42.294|-71.826|Частный|Другой
+Bridgewater State University|Bridgewater|MA|41.989|-70.969|Государственный|Другой
+Salem State University|Salem|MA|42.502|-70.896|Государственный|Другой
+Simmons University|Boston|MA|42.337|-71.100|Частный|Другой
+Suffolk University|Boston|MA|42.359|-71.062|Частный|Другой
+University of Massachusetts Boston|Boston|MA|42.314|-71.038|Государственный|Другой
+University of Massachusetts Lowell|Lowell|MA|42.654|-71.326|Государственный|Другой
+University of Massachusetts Dartmouth|North Dartmouth|MA|41.629|-71.005|Государственный|Другой
+Wentworth Institute of Technology|Boston|MA|42.336|-71.096|Частный|Технический
+Western New England University|Springfield|MA|42.114|-72.510|Частный|Другой
+Central Michigan University|Mount Pleasant|MI|43.590|-84.775|Государственный|Другой
+Eastern Michigan University|Ypsilanti|MI|42.250|-83.624|Государственный|Другой
+Ferris State University|Big Rapids|MI|43.688|-85.487|Государственный|Другой
+Grand Valley State University|Allendale|MI|42.964|-85.888|Государственный|Другой
+Hope College|Holland|MI|42.788|-86.103|Частный|Свободные искусства
+Kalamazoo College|Kalamazoo|MI|42.283|-85.597|Частный|Свободные искусства
+Oakland University|Rochester|MI|42.671|-83.215|Государственный|Другой
+University of Detroit Mercy|Detroit|MI|42.421|-83.139|Частный|Другой
+Augsburg University|Minneapolis|MN|44.967|-93.243|Частный|Другой
+Bethel University|Arden Hills|MN|45.054|-93.167|Частный|Другой
+Gustavus Adolphus College|Saint Peter|MN|44.322|-93.972|Частный|Свободные искусства
+Minnesota State University, Mankato|Mankato|MN|44.146|-94.000|Государственный|Другой
+St. Cloud State University|St. Cloud|MN|45.552|-94.151|Государственный|Другой
+University of St. Thomas|Saint Paul|MN|44.942|-93.190|Частный|Другой
+Jackson State University|Jackson|MS|32.296|-90.208|Государственный|Другой
+Millsaps College|Jackson|MS|32.323|-90.178|Частный|Свободные искусства
+University of Missouri-Kansas City|Kansas City|MO|39.034|-94.576|Государственный|Другой
+Missouri University of Science and Technology|Rolla|MO|37.955|-91.775|Государственный|Технический
+University of Missouri-St. Louis|St. Louis|MO|38.710|-90.307|Государственный|Другой
+Missouri State University|Springfield|MO|37.200|-93.282|Государственный|Другой
+Truman State University|Kirksville|MO|40.187|-92.581|Государственный|Другой
+Webster University|Webster Groves|MO|38.594|-90.340|Частный|Другой
+Rockhurst University|Kansas City|MO|39.034|-94.575|Частный|Другой
+Carroll College|Helena|MT|46.598|-112.016|Частный|Другой
+Fort Lewis College|Durango|CO|37.275|-107.883|Государственный|Другой
+Chadron State College|Chadron|NE|42.827|-102.995|Государственный|Другой
+University of Nebraska at Kearney|Kearney|NE|40.703|-99.081|Государственный|Другой
+Nevada State University|Henderson|NV|36.035|-114.972|Государственный|Другой
+Southern New Hampshire University|Manchester|NH|43.039|-71.452|Частный|Другой
+Keene State College|Keene|NH|42.928|-72.282|Государственный|Другой
+Rider University|Lawrenceville|NJ|40.280|-74.743|Частный|Другой
+Seton Hall University|South Orange|NJ|40.745|-74.246|Частный|Другой
+Fairleigh Dickinson University|Teaneck|NJ|40.894|-74.014|Частный|Другой
+Kean University|Union|NJ|40.679|-74.234|Государственный|Другой
+Monmouth University|West Long Branch|NJ|40.278|-74.006|Частный|Другой
+Ramapo College of New Jersey|Mahwah|NJ|41.082|-74.173|Государственный|Другой
+Rutgers University-Newark|Newark|NJ|40.741|-74.174|Государственный|Другой
+Stockton University|Galloway|NJ|39.494|-74.531|Государственный|Другой
+The College of New Jersey|Ewing|NJ|40.268|-74.780|Государственный|Другой
+William Paterson University|Wayne|NJ|40.947|-74.198|Государственный|Другой
+New Mexico State University|Las Cruces|NM|32.280|-106.746|Государственный|Другой
+New Mexico Institute of Mining and Technology|Socorro|NM|34.066|-106.907|Государственный|Технический
+Adelphi University|Garden City|NY|40.720|-73.652|Частный|Другой
+Alfred University|Alfred|NY|42.254|-77.790|Частный|Другой
+Canisius University|Buffalo|NY|42.926|-78.856|Частный|Другой
+College of Saint Rose|Albany|NY|42.656|-73.782|Частный|Другой
+Iona University|New Rochelle|NY|40.926|-73.785|Частный|Другой
+Ithaca College|Ithaca|NY|42.422|-76.495|Частный|Другой
+Manhattan University|Bronx|NY|40.889|-73.903|Частный|Другой
+Marist University|Poughkeepsie|NY|41.723|-73.935|Частный|Другой
+Molloy University|Rockville Centre|NY|40.657|-73.640|Частный|Другой
+New York Institute of Technology|Old Westbury|NY|40.798|-73.600|Частный|Технический
+Niagara University|Lewiston|NY|43.138|-79.034|Частный|Другой
+Pratt Institute|Brooklyn|NY|40.691|-73.964|Частный|Другой
+Sarah Lawrence College|Bronxville|NY|40.909|-73.826|Частный|Свободные искусства
+Siena University|Loudonville|NY|42.718|-73.753|Частный|Другой
+St. Lawrence University|Canton|NY|44.590|-75.162|Частный|Свободные искусства
+SUNY Geneseo|Geneseo|NY|42.796|-77.817|Государственный|Другой
+SUNY New Paltz|New Paltz|NY|41.744|-74.083|Государственный|Другой
+SUNY Oswego|Oswego|NY|43.454|-76.540|Государственный|Другой
+SUNY Purchase|Purchase|NY|41.049|-73.703|Государственный|Другой
+SUNY College of Environmental Science and Forestry|Syracuse|NY|43.034|-76.133|Государственный|Технический
+Campbell University|Buies Creek|NC|35.411|-78.738|Частный|Другой
+Elon University|Elon|NC|36.102|-79.502|Частный|Другой
+High Point University|High Point|NC|35.971|-79.998|Частный|Другой
+North Carolina Central University|Durham|NC|35.974|-78.899|Государственный|Другой
+University of North Carolina at Charlotte|Charlotte|NC|35.307|-80.735|Государственный|Другой|э
+University of North Carolina at Greensboro|Greensboro|NC|36.068|-79.810|Государственный|Другой
+Western Carolina University|Cullowhee|NC|35.309|-83.182|Государственный|Другой
+Winthrop University|Rock Hill|SC|34.940|-81.032|Государственный|Другой
+North Dakota State University|Fargo|ND|46.897|-96.801|Государственный|Другой
+Baldwin Wallace University|Berea|OH|41.368|-81.855|Частный|Другой
+Cleveland State University|Cleveland|OH|41.502|-81.675|Государственный|Другой
+John Carroll University|University Heights|OH|41.496|-81.538|Частный|Другой
+Ohio Wesleyan University|Delaware|OH|40.298|-83.067|Частный|Свободные искусства
+University of Akron|Akron|OH|41.076|-81.512|Государственный|Другой
+University of Toledo|Toledo|OH|41.657|-83.607|Государственный|Другой
+Wright State University|Dayton|OH|39.783|-84.064|Государственный|Другой
+Youngstown State University|Youngstown|OH|41.104|-80.646|Государственный|Другой
+Northeastern State University|Tahlequah|OK|35.909|-94.973|Государственный|Другой
+Oral Roberts University|Tulsa|OK|36.051|-95.943|Частный|Другой
+University of Central Oklahoma|Edmond|OK|35.655|-97.470|Государственный|Другой
+George Fox University|Newberg|OR|45.304|-122.969|Частный|Другой
+Lewis & Clark College|Portland|OR|45.449|-122.673|Частный|Свободные искусства
+Linfield University|McMinnville|OR|45.210|-123.194|Частный|Свободные искусства
+Southern Oregon University|Ashland|OR|42.186|-122.690|Государственный|Другой
+University of Portland|Portland|OR|45.572|-122.727|Частный|Другой
+Willamette University|Salem|OR|44.935|-123.031|Частный|Свободные искусства
+Bloomsburg University of Pennsylvania|Bloomsburg|PA|41.007|-76.447|Государственный|Другой
+California University of Pennsylvania|California|PA|40.066|-79.894|Государственный|Другой
+Duquesne University|Pittsburgh|PA|40.436|-79.992|Частный|Другой
+Indiana University of Pennsylvania|Indiana|PA|40.616|-79.160|Государственный|Другой
+La Salle University|Philadelphia|PA|40.037|-75.152|Частный|Другой
+Lebanon Valley College|Annville|PA|40.329|-76.521|Частный|Другой
+Messiah University|Mechanicsburg|PA|40.157|-76.996|Частный|Другой
+Muhlenberg College|Allentown|PA|40.597|-75.508|Частный|Свободные искусства
+Saint Joseph's University|Philadelphia|PA|39.995|-75.240|Частный|Другой
+Slippery Rock University|Slippery Rock|PA|41.063|-80.040|Государственный|Другой
+Susquehanna University|Selinsgrove|PA|40.797|-76.870|Частный|Свободные искусства
+University of Scranton|Scranton|PA|41.404|-75.656|Частный|Другой
+West Chester University|West Chester|PA|39.951|-75.597|Государственный|Другой
+Bryant University|Smithfield|RI|41.923|-71.545|Частный|Другой|э
+Johnson & Wales University|Providence|RI|41.816|-71.416|Частный|Другой
+Rhode Island College|Providence|RI|41.842|-71.456|Государственный|Другой
+Roger Williams University|Bristol|RI|41.650|-71.263|Частный|Другой
+Charleston Southern University|North Charleston|SC|32.983|-80.055|Частный|Другой
+College of Charleston|Charleston|SC|32.784|-79.937|Государственный|Другой
+Coastal Carolina University|Conway|SC|33.793|-79.016|Государственный|Другой
+The Citadel|Charleston|SC|32.798|-79.961|Государственный|Другой
+Black Hills State University|Spearfish|SD|44.490|-103.867|Государственный|Другой
+South Dakota State University|Brookings|SD|44.318|-96.784|Государственный|Другой
+Belmont University|Nashville|TN|36.133|-86.794|Частный|Другой
+East Tennessee State University|Johnson City|TN|36.303|-82.369|Государственный|Другой
+Lipscomb University|Nashville|TN|36.100|-86.795|Частный|Другой
+Tennessee Technological University|Cookeville|TN|36.175|-85.507|Государственный|Технический
+University of Tennessee at Chattanooga|Chattanooga|TN|35.047|-85.301|Государственный|Другой
+Abilene Christian University|Abilene|TX|32.468|-99.708|Частный|Другой
+Austin College|Sherman|TX|33.652|-96.670|Частный|Свободные искусства
+Houston Christian University|Houston|TX|29.683|-95.563|Частный|Другой
+Lamar University|Beaumont|TX|30.043|-94.073|Государственный|Другой
+Sam Houston State University|Huntsville|TX|30.714|-95.549|Государственный|Другой
+Southwestern University|Georgetown|TX|30.636|-97.678|Частный|Свободные искусства
+St. Edward's University|Austin|TX|30.228|-97.756|Частный|Другой
+Stephen F. Austin State University|Nacogdoches|TX|31.619|-94.648|Государственный|Другой
+Texas A&M University-Corpus Christi|Corpus Christi|TX|27.713|-97.325|Государственный|Другой
+Texas A&M University-Commerce|Commerce|TX|33.241|-95.909|Государственный|Другой
+Texas Woman's University|Denton|TX|33.226|-97.126|Государственный|Другой
+University of Dallas|Irving|TX|32.846|-96.918|Частный|Другой
+University of Texas at El Paso|El Paso|TX|31.771|-106.504|Государственный|Другой
+University of the Incarnate Word|San Antonio|TX|29.468|-98.465|Частный|Другой
+Southern Utah University|Cedar City|UT|37.676|-113.066|Государственный|Другой
+Utah Valley University|Orem|UT|40.279|-111.714|Государственный|Другой
+Weber State University|Ogden|UT|41.193|-111.944|Государственный|Другой
+Champlain College|Burlington|VT|44.472|-73.206|Частный|Другой
+Norwich University|Northfield|VT|44.153|-72.656|Частный|Другой
+Saint Michael's College|Colchester|VT|44.518|-73.182|Частный|Другой
+Christopher Newport University|Newport News|VA|37.066|-76.494|Государственный|Другой
+Hampden-Sydney College|Hampden-Sydney|VA|37.241|-78.463|Частный|Свободные искусства
+Liberty University|Lynchburg|VA|37.352|-79.179|Частный|Другой
+Longwood University|Farmville|VA|37.299|-78.395|Государственный|Другой
+Radford University|Radford|VA|37.134|-80.554|Государственный|Другой
+Regent University|Virginia Beach|VA|36.800|-76.157|Частный|Другой
+Roanoke College|Salem|VA|37.298|-80.054|Частный|Свободные искусства
+University of Mary Washington|Fredericksburg|VA|38.302|-77.476|Государственный|Другой
+Virginia State University|Petersburg|VA|37.236|-77.425|Государственный|Другой
+Central Washington University|Ellensburg|WA|47.002|-120.540|Государственный|Другой
+Eastern Washington University|Cheney|WA|47.489|-117.581|Государственный|Другой
+Pacific Lutheran University|Tacoma|WA|47.145|-122.443|Частный|Другой
+University of Puget Sound|Tacoma|WA|47.262|-122.482|Частный|Свободные искусства
+Western Washington University|Bellingham|WA|48.733|-122.486|Государственный|Другой
+Marshall University|Huntington|WV|38.424|-82.426|Государственный|Другой
+West Virginia Wesleyan College|Buckhannon|WV|38.994|-80.232|Частный|Другой
+Carroll University|Waukesha|WI|43.013|-88.230|Частный|Другой
+Ripon College|Ripon|WI|43.841|-88.835|Частный|Свободные искусства
+University of Wisconsin-La Crosse|La Crosse|WI|43.815|-91.230|Государственный|Другой
+University of Wisconsin-Oshkosh|Oshkosh|WI|44.022|-88.553|Государственный|Другой
+University of Wisconsin-Stout|Menomonie|WI|44.879|-91.926|Государственный|Другой
+University of Wisconsin-Whitewater|Whitewater|WI|42.842|-88.743|Государственный|Другой
+Dillard University|New Orleans|LA|30.030|-90.060|Частный|Другой
+Xavier University of Louisiana|New Orleans|LA|29.964|-90.108|Частный|Другой
+Southern University and A&M College|Baton Rouge|LA|30.526|-91.193|Государственный|Другой
+Tuskegee University|Tuskegee|AL|32.430|-85.707|Частный|Другой
+Alabama A&M University|Normal|AL|34.783|-86.569|Государственный|Другой
+Tennessee State University|Nashville|TN|36.168|-86.832|Государственный|Другой
+Fisk University|Nashville|TN|36.168|-86.804|Частный|Другой
+Clark Atlanta University|Atlanta|GA|33.753|-84.413|Частный|Другой
+Prairie View A&M University|Prairie View|TX|30.093|-95.989|Государственный|Другой
+Florida Polytechnic University|Lakeland|FL|28.150|-81.849|Государственный|Технический
+Oregon Institute of Technology|Klamath Falls|OR|42.250|-121.783|Государственный|Технический
+South Dakota School of Mines and Technology|Rapid City|SD|44.074|-103.208|Государственный|Технический
+Montana Technological University|Butte|MT|46.016|-112.527|Государственный|Технический
+Kettering University|Flint|MI|43.012|-83.714|Частный|Технический
+Milwaukee School of Engineering|Milwaukee|WI|43.044|-87.904|Частный|Технический
+Franklin W. Olin College of Engineering|Needham|MA|42.293|-71.264|Частный|Технический
+Webb Institute|Glen Cove|NY|40.855|-73.639|Частный|Технический
+Embry-Riddle Aeronautical University, Prescott|Prescott|AZ|34.616|-112.451|Частный|Технический`;
