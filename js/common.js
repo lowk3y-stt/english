@@ -119,7 +119,10 @@
   if (tbtn) {
     tbtn.addEventListener("click", function () {
       var next = cur === "dark" ? "light" : "dark";
-      applyTheme(next);
+      /* плавное перетекание цветов при смене темы, где браузер это умеет */
+      var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (document.startViewTransition && !calm) document.startViewTransition(function () { applyTheme(next); });
+      else applyTheme(next);
       try { localStorage.setItem("wbw-theme", next); } catch (e) {}
     });
   }
