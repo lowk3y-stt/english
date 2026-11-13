@@ -444,3 +444,20 @@ h1, h2 { overflow-wrap: break-word; }
 @media (max-width: 600px) { .star { width: 44px; } .logo .flag-logo { width: 24px; height: 13px; } }
 .map-tools > * { min-width: 0; }
 @media (max-width: 600px) { .map-tools .check { white-space: normal; } .map-tools .count { grid-column: 1 / -1; } .map-tools select { text-overflow: ellipsis; } }
+
+/* ---- производительность (0.1.2) ---- */
+/* фон: мягкие градиенты вместо тяжёлого blur(70px), анимируется только transform */
+.blob { filter: none; background-color: transparent !important; will-change: transform; }
+.blob.r { background-image: radial-gradient(closest-side, var(--red), transparent 100%); }
+.blob.y { background-image: radial-gradient(closest-side, color-mix(in srgb, var(--blue) 45%, #fff), transparent 100%); }
+.blob.b { background-image: radial-gradient(closest-side, var(--blue), transparent 100%); }
+/* стекло: размытие слабее и без дорогого saturate */
+.glass { -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); }
+.btn.ghost, .btn.tt, .mini { -webkit-backdrop-filter: none; backdrop-filter: none; }
+/* «плавание» только у двух главных элементов: анимация стекла с размытием дорогая */
+.float { animation: none; }
+.wotd.float, .card.float { animation: bob 7s ease-in-out infinite; }
+/* длинные списки рисуются только когда попадают в экран */
+.uni-row, .hrow { content-visibility: auto; contain-intrinsic-size: auto 56px; }
+.uni-list, .hlist { contain: layout paint; }
+@media (prefers-reduced-motion: reduce) { .wotd.float, .card.float, .blob { animation: none; } }

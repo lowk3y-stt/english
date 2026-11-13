@@ -16,7 +16,7 @@
 
   var map = null, layer = null, hasMap = typeof window.L !== "undefined";
   if (hasMap) {
-    map = L.map("usmap", { scrollWheelZoom: false }).setView([39.5, -98.35], 4);
+    map = L.map("usmap", { scrollWheelZoom: false, preferCanvas: true }).setView([39.5, -98.35], 4);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: "&copy; OpenStreetMap" }).addTo(map);
     layer = L.layerGroup().addTo(map);
     map.on("focus", function () { map.scrollWheelZoom.enable(); });
@@ -109,6 +109,9 @@
       map.fitBounds(b2.pad(0.15), { maxZoom: 9 });
     } else if (map) { map.setView([39.5, -98.35], 4); }
   }
-  [q, sSt, sType, sCat, cEcon, cFav].forEach(function (el) { el.addEventListener(el === q ? "input" : "change", render); });
+  /* поиск срабатывает после короткой паузы в наборе, а не на каждую букву */
+  var qTimer = null;
+  q.addEventListener("input", function () { clearTimeout(qTimer); qTimer = setTimeout(render, 150); });
+  [sSt, sType, sCat, cEcon, cFav].forEach(function (el) { el.addEventListener("change", render); });
   render();
 })();

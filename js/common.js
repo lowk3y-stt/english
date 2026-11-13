@@ -48,12 +48,17 @@
     return list;
   }
   LK.baseWords = function () { if (!merged) merged = buildBase(); return merged; };
+  var allCache = null, allCacheKey = -1;
   LK.allWords = function () {
+    /* список пересобирается только когда добавлено своё слово */
+    if (allCache && allCacheKey === LK.state.custom.length) return allCache;
     var have = {};
     LK.baseWords().forEach(function (w) { have[w.en.toLowerCase()] = 1; });
-    return LK.baseWords().concat(LK.state.custom.filter(function (c) { return !have[c.en.toLowerCase()]; }).map(function (c) {
+    allCache = LK.baseWords().concat(LK.state.custom.filter(function (c) { return !have[c.en.toLowerCase()]; }).map(function (c) {
       return { en: c.en, ru: c.ru, ex: c.ex || "", ipa: "", lvl: "Свои" };
     }));
+    allCacheKey = LK.state.custom.length;
+    return allCache;
   };
 
   /* случайная выборка заданий: новые вопросы идут первыми, примерно каждый седьмой может повториться */
