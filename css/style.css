@@ -271,3 +271,164 @@ nav a { font-weight: 500; font-size: 0.9rem; }
 .day .tm { display: inline-block; padding: 2px 10px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 28%, transparent); color: var(--fg); font-weight: 700; font-size: 0.8rem; font-variant-numeric: tabular-nums; }
 .day .ad { color: var(--muted); font-size: 0.9rem; }
 @media (max-width: 480px) { .addw .row2 { grid-template-columns: minmax(0, 1fr); } }
+
+/* ===== Адаптивность: ноутбук, планшет, телефон ===== */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+.wrap { width: 100%; }
+.pill .logo { white-space: nowrap; }
+h1, h2 { overflow-wrap: break-word; }
+
+/* ноутбук и большие экраны: меню в одну строку, карточки в две колонки */
+@media (min-width: 1200px) {
+  .wrap { max-width: 1120px; }
+  .pill, .pill nav { flex-wrap: nowrap; }
+  .hero { gap: 64px; }
+}
+@media (min-width: 1600px) { .wrap { max-width: 1240px; } }
+@media (min-width: 1000px) {
+  .deck { max-width: none; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); column-gap: 28px; align-items: start; }
+  .deck > .card { grid-column: 1; grid-row: 1; }
+  .deck > .deck-bar { grid-column: 1; grid-row: 2; }
+  .deck > .addw { grid-column: 2; grid-row: 1; }
+  .deck > .panel:not(.addw) { grid-column: 2; grid-row: 2; }
+  .quiz { max-width: 720px; }
+}
+
+/* планшеты и узкие ноутбуки: логотип и тема сверху, меню второй строкой */
+@media (max-width: 1199px) {
+  .pill { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "logo theme" "nav nav"; align-items: center; gap: 8px 12px; border-radius: 26px; padding: 12px 16px; }
+  .pill .logo { grid-area: logo; }
+  .pill .theme-btn { grid-area: theme; }
+  .pill nav { grid-area: nav; display: flex; flex-wrap: nowrap; gap: 4px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .pill nav::-webkit-scrollbar { display: none; }
+  .pill nav a { flex: 1 0 auto; text-align: center; white-space: nowrap; }
+}
+@media (max-width: 900px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 40px 28px; }
+  .wotd { max-width: 560px; }
+  section { padding-block: 34px; }
+}
+@media (min-width: 601px) and (max-width: 999px) { .deck { max-width: 680px; } }
+
+/* телефоны */
+@media (max-width: 600px) {
+  header.top { position: static; margin-top: 8px; }
+  .pill { padding: 10px 12px; border-radius: 22px; gap: 8px 10px; }
+  .pill .logo { font-size: 1.1rem; min-width: 0; }
+  .theme-btn { padding: 7px 11px; font-size: 0.74rem; letter-spacing: 0.04em; }
+  .pill nav { margin-inline: -4px; padding-inline: 4px; }
+  .pill nav a { flex: none; padding: 8px 12px; }
+  .glass { -webkit-backdrop-filter: blur(18px) saturate(180%); backdrop-filter: blur(18px) saturate(180%); border-radius: 20px; }
+  .hero { padding-block: 28px 20px; gap: 24px; }
+  .hero h1 { font-size: clamp(1.8rem, 9vw, 2.6rem); }
+  .hero p.lead { font-size: 1rem; }
+  .usa-tag { letter-spacing: 0.14em; }
+  .cta-row { gap: 10px; margin-top: 22px; }
+  .cta-row .btn { flex: 1 1 100%; text-align: center; justify-content: center; }
+  .wotd { padding: 22px; max-width: none; }
+  .wotd .word { font-size: 2rem; }
+  .banner { height: 72px; border-radius: 18px; margin-bottom: 22px; }
+  .banner .bn-text { font-size: 0.78rem; padding: 8px 14px; letter-spacing: 0.08em; }
+  .tiles { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .tile { padding: 18px; border-radius: 20px; }
+  section { padding-block: 26px; }
+  h2 { font-size: 1.6rem; }
+  .sec-head { align-items: flex-start; margin-bottom: 18px; }
+  .sub-head { margin-top: 32px; }
+  .chips { border-radius: 22px; }
+  .chip { padding: 9px 14px; }
+  .gram-tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .gram-tabs::-webkit-scrollbar { display: none; }
+  .gram-tabs .chip { flex: none; white-space: nowrap; }
+  .card { padding: 22px; min-height: 200px; }
+  .card .big { font-size: 1.8rem; }
+  .deck-bar { gap: 8px; }
+  .deck-bar .mini { flex: 1 1 auto; text-align: center; }
+  .deck-bar .count { flex-basis: 100%; margin-left: 0; text-align: center; }
+  .quiz { padding: 20px; }
+  .quiz .q { font-size: 1.2rem; }
+  .opt { padding: 14px 16px; }
+  .quiz-foot .btn { width: 100%; text-align: center; }
+  .tips, .week { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .tip { padding: 18px; }
+  .plan-ctl { gap: 14px; }
+  .plan-sum { padding: 16px 18px; }
+  .hrow { flex-direction: column; align-items: flex-start; }
+  .hact { width: 100%; }
+  footer { flex-direction: column; align-items: flex-start; border-radius: 20px; padding: 16px 18px; }
+}
+
+@media (max-width: 600px) { .chips:not(.gram-tabs) .chip { flex: 1 1 auto; text-align: center; } }
+/* светлая тема: видимые границы у стеклянных кнопок и полей */
+:root[data-theme="light"] .theme-btn,
+:root[data-theme="light"] .mini:not(.ok),
+:root[data-theme="light"] .btn.ghost,
+:root[data-theme="light"] .btn.tt,
+:root[data-theme="light"] .inp { border-color: rgba(16, 26, 56, 0.16); }
+/* самые узкие телефоны */
+@media (max-width: 380px) {
+  .pill { padding-inline: 10px; }
+  .pill .logo { font-size: 1rem; }
+  .theme-btn { padding: 6px 9px; font-size: 0.68rem; letter-spacing: 0.02em; }
+}
+
+/* низкие экраны в горизонтальном положении (телефон на боку) */
+@media (max-height: 500px) and (orientation: landscape) {
+  header.top { position: static; }
+  .hero { padding-block: 24px 20px; }
+}
+
+/* сенсорные экраны: крупные цели для нажатия, без прыгающих элементов */
+@media (pointer: coarse) {
+  .float { animation: none; }
+  nav a, .chip, .mini, .theme-btn, .btn { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  .opt { min-height: 48px; }
+  .inp { min-height: 44px; font-size: 16px; }
+}
+@media (pointer: coarse) and (max-width: 1199px) { header.top { position: static; } }
+@media (hover: none) {
+  .btn:hover, .mini:hover, .theme-btn:hover, .tile:hover, .opt:hover:not(:disabled) { transform: none; }
+}
+
+/* ---- карточки: фильтры и вкладки ---- */
+.deck-filters { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 16px; }
+
+/* ---- тесты: выбор темы ---- */
+.topics { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
+.topic { display: flex; flex-direction: column; gap: 4px; text-align: left; padding: 16px 18px; border-radius: 18px; color: var(--fg); font: inherit; cursor: pointer; border: 1px solid var(--glass-edge); transition: transform .15s ease; }
+.topic:hover, .topic:focus-visible { transform: translateY(-2px); }
+.topic b { font-family: "Oswald", sans-serif; font-size: 18px; letter-spacing: .02em; }
+.topic span { color: var(--muted); font-size: 13px; }
+.topic small { color: var(--muted); font-size: 12px; margin-top: 6px; }
+.topic.mix { grid-column: 1 / -1; }
+.quiz-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+
+/* ---- карта вузов ---- */
+.map-tools { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr auto auto; gap: 10px; align-items: center; margin-bottom: 14px; }
+.map-tools .inp { width: 100%; min-width: 0; }
+.check { display: inline-flex; align-items: center; gap: 6px; color: var(--fg); font-size: 14px; white-space: nowrap; }
+.map-wrap { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 14px; }
+.map-box { position: relative; border-radius: 20px; overflow: hidden; padding: 6px; min-height: 420px; }
+#usmap { width: 100%; height: 520px; border-radius: 14px; }
+.map-fallback { padding: 20px; color: var(--muted); }
+.uni-list { border-radius: 20px; padding: 8px; max-height: 532px; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; }
+.uni { display: flex; gap: 10px; align-items: flex-start; text-align: left; background: transparent; border: 1px solid transparent; border-radius: 12px; padding: 9px 10px; color: var(--fg); font: inherit; cursor: pointer; }
+.uni:hover, .uni:focus-visible { background: var(--glass); border-color: var(--glass-edge); }
+.uni i { flex: 0 0 10px; width: 10px; height: 10px; border-radius: 50%; margin-top: 6px; }
+.uni b { display: block; font-weight: 600; font-size: 14px; }
+.uni small { color: var(--muted); font-size: 12px; }
+:root:not([data-theme="light"]) .leaflet-tile-pane { filter: brightness(.75) contrast(1.05) saturate(.8); }
+.leaflet-popup-content { color: #14233a; font-size: 13px; }
+@media (max-width: 1000px) {
+  .map-tools { grid-template-columns: 1fr 1fr 1fr; }
+  .map-tools #u-q { grid-column: 1 / -1; }
+  .map-wrap { grid-template-columns: minmax(0, 1fr); }
+  .uni-list { max-height: 360px; }
+}
+@media (max-width: 600px) {
+  .map-tools { grid-template-columns: 1fr 1fr; }
+  #usmap { height: 340px; }
+  .map-box { min-height: 0; }
+  .topics { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 380px) { .topics { grid-template-columns: 1fr; } }

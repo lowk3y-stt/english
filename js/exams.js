@@ -1,8 +1,14 @@
 /* Разминка по экзаменам: сначала выбираем ответ, потом подтверждаем кнопкой.
-   Вопросы лежат в js/data/exam-questions.js. */
+   Банк заданий лежит в js/data/exam-questions.js, каждый раз выбираются 10 случайных. */
 (function () {
-  var EXAMS = window.LK.EXAMS;
+  var LK = window.LK, N = 10;
+  var EXAMS = {};
+  Object.keys(LK.EXAM_BANK).forEach(function (k) {
+    EXAMS[k] = { name: LK.EXAM_BANK[k].name, all: LK.parseBank("e" + k + ":", LK.EXAM_BANK[k].lines, LK.PASSAGES), qs: [] };
+  });
+  function draw(k) { EXAMS[k].qs = LK.drawQuestions("exam-" + k, EXAMS[k].all, N); }
   var ekey = "ielts", ei = 0, escore = 0, eans = false, esel = -1;
+  draw(ekey);
   var ePass = document.getElementById("epassage"), eText = document.getElementById("etext"),
       eOpts = document.getElementById("eopts"), eExp = document.getElementById("eexp"),
       eNum = document.getElementById("enum"), eNext = document.getElementById("enext"),
@@ -19,8 +25,8 @@
       ePass.hidden = true;
       eText.textContent = "Результат: " + escore + " из " + set.qs.length;
       eOpts.innerHTML = "";
-      eExp.textContent = escore === set.qs.length ? "Отличный результат, ошибок нет." : "Разберите объяснения к ошибкам и пройдите набор ещё раз.";
-      eNext.textContent = "Пройти заново"; eNext.hidden = false;
+      eExp.textContent = escore === set.qs.length ? "Отличный результат, ошибок нет." : "Разберите объяснения к ошибкам и пройдите набор ещё раз: вопросы будут другие.";
+      eNext.textContent = "Ещё 10 заданий"; eNext.hidden = false;
       eBar.style.width = "100%"; eScore.textContent = "";
       return;
     }
@@ -71,14 +77,14 @@
   }
   eConfirm.addEventListener("click", pickE);
   eNext.addEventListener("click", function () {
-    if (ei >= EXAMS[ekey].qs.length) { ei = 0; escore = 0; } else { ei++; }
+    if (ei >= EXAMS[ekey].qs.length) { ei = 0; escore = 0; draw(ekey); } else { ei++; }
     showE();
   });
   var echips = document.querySelectorAll("#exams .chip");
   echips.forEach(function (c) {
     c.addEventListener("click", function () {
       echips.forEach(function (o) { o.setAttribute("aria-pressed", o === c ? "true" : "false"); });
-      ekey = c.getAttribute("data-exam"); ei = 0; escore = 0; showE();
+      ekey = c.getAttribute("data-exam"); ei = 0; escore = 0; draw(ekey); showE();
     });
   });
   showE();

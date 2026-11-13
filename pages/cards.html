@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Карточки слов · lowk3y english</title>
-<meta name="description" content="Бесконечная колода слов с переводом и ссылками на Oxford Learner's Dictionaries">
+<title>Карточки слов · mattysen english</title>
+<meta name="description" content="Больше 2000 слов от A1 до C1 с переводом, ссылками на Oxford и историей выученных слов">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap">
@@ -33,66 +33,95 @@
 <div class="wrap">
   <header class="top">
     <div class="pill glass">
-      <a class="logo" href="../index.html">lowk3y english</a>
+      <a class="logo" href="../index.html">mattysen english</a>
       <nav aria-label="Разделы">
         <a href="cards.html" data-nav="cards">Карточки</a>
-        <a href="history.html" data-nav="history">История</a>
         <a href="quiz.html" data-nav="quiz">Тест</a>
         <a href="exams.html" data-nav="exams">Экзамены</a>
         <a href="grammar.html" data-nav="grammar">Грамматика</a>
+        <a href="map.html" data-nav="map">Карта вузов</a>
         <a href="plan.html" data-nav="plan">План</a>
       </nav>
       <button class="theme-btn" id="theme" type="button" aria-label="Переключить тему">Светлая тема</button>
     </div>
   </header>
 
-  <main class="view" id="cards">
+  <main>
+  <section class="view" id="cards">
     <div class="sec-head">
       <div>
         <h2>Карточки слов</h2>
-        <p>Колода не заканчивается: слова идут по кругу в случайном порядке. Нажмите на карточку, чтобы увидеть перевод. «Запомнил» и «Выучил» сохраняются в истории, а выученные слова из колоды уходят.</p>
+        <p>Больше 3000 слов от самых простых (A1) до сложных (C1). Нажмите на карточку, чтобы увидеть перевод. «Запомнил» и «Выучил» сохраняются на вкладке «История», а выученные слова из колоды уходят.</p>
       </div>
-      <div class="chips glass" role="group" aria-label="Уровень">
-        <button class="chip" data-lvl="all" aria-pressed="true">Все</button>
-        <button class="chip" data-lvl="A2" aria-pressed="false">A2</button>
-        <button class="chip" data-lvl="B1" aria-pressed="false">B1</button>
-        <button class="chip" data-lvl="B2" aria-pressed="false">B2</button>
-        <button class="chip" data-lvl="C1" aria-pressed="false">C1</button>
-        <button class="chip" data-lvl="Свои" aria-pressed="false">Свои</button>
+      <div class="chips glass" role="tablist" aria-label="Раздел карточек">
+        <button class="chip" id="tab-deck" data-tab="deck" role="tab" aria-pressed="true">Карточки</button>
+        <button class="chip" id="tab-hist" data-tab="history" role="tab" aria-pressed="false">История</button>
       </div>
     </div>
-    <div class="deck">
-      <div class="card glass float d1">
-        <button class="flip" id="card" aria-label="Карточка слова. Нажмите, чтобы перевернуть"></button>
-        <a class="ox" id="ox" href="https://www.oxfordlearnersdictionaries.com/" target="_blank" rel="noopener noreferrer">Открыть в Oxford Learner's Dictionaries ↗</a>
-      </div>
-      <div class="deck-bar">
-        <button class="mini" id="again">Ещё раз</button>
-        <button class="mini" id="rem">Запомнил</button>
-        <button class="mini ok" id="know">Выучил</button>
-        <span class="count" id="count"></span>
-      </div>
-      <form class="addw glass panel" id="addw" autocomplete="off">
-        <div class="eyebrow">Своё слово</div>
-        <div class="row2">
-          <input class="inp" id="cw-en" type="text" placeholder="Слово или фраза" aria-label="Слово или фраза">
-          <input class="inp" id="cw-ru" type="text" placeholder="Перевод" aria-label="Перевод">
+
+    <div id="pane-deck">
+      <div class="deck-filters">
+        <div class="chips glass" role="group" aria-label="Уровень">
+          <button class="chip" data-lvl="all" aria-pressed="true">Все</button>
+          <button class="chip" data-lvl="A1" aria-pressed="false">A1</button>
+          <button class="chip" data-lvl="A2" aria-pressed="false">A2</button>
+          <button class="chip" data-lvl="B1" aria-pressed="false">B1</button>
+          <button class="chip" data-lvl="B2" aria-pressed="false">B2</button>
+          <button class="chip" data-lvl="C1" aria-pressed="false">C1</button>
+          <button class="chip" data-lvl="Свои" aria-pressed="false">Свои</button>
         </div>
-        <button class="btn sm" type="submit">Добавить в колоду</button>
-        <div class="msg" id="cw-msg" aria-live="polite"></div>
-      </form>
-      <div class="glass panel">
-        <div class="eyebrow">Найти слово в Oxford</div>
-        <div class="oxrow">
-          <input class="inp" id="ox-q" type="text" placeholder="Например, figure out" aria-label="Слово для поиска">
-          <a class="btn ghost sm" id="ox-go" href="https://www.oxfordlearnersdictionaries.com/" target="_blank" rel="noopener noreferrer">Искать ↗</a>
+        <div class="chips glass" role="group" aria-label="Порядок">
+          <button class="chip" data-order="level" aria-pressed="true">По уровням</button>
+          <button class="chip" data-order="mix" aria-pressed="false">Вперемешку</button>
+        </div>
+      </div>
+      <div class="deck">
+        <div class="card glass float d1">
+          <button class="flip" id="card" aria-label="Карточка слова. Нажмите, чтобы перевернуть"></button>
+          <a class="ox" id="ox" href="https://www.oxfordlearnersdictionaries.com/" target="_blank" rel="noopener noreferrer">Открыть в Oxford Learner's Dictionaries ↗</a>
+        </div>
+        <div class="deck-bar">
+          <button class="mini" id="again">Ещё раз</button>
+          <button class="mini" id="rem">Запомнил</button>
+          <button class="mini ok" id="know">Выучил</button>
+          <span class="count" id="count"></span>
+        </div>
+        <form class="addw glass panel" id="addw" autocomplete="off">
+          <div class="eyebrow">Своё слово</div>
+          <div class="row2">
+            <input class="inp" id="cw-en" type="text" placeholder="Слово или фраза" aria-label="Слово или фраза">
+            <input class="inp" id="cw-ru" type="text" placeholder="Перевод" aria-label="Перевод">
+          </div>
+          <button class="btn sm" type="submit">Добавить в колоду</button>
+          <div class="msg" id="cw-msg" aria-live="polite"></div>
+        </form>
+        <div class="glass panel">
+          <div class="eyebrow">Найти слово в Oxford</div>
+          <div class="oxrow">
+            <input class="inp" id="ox-q" type="text" placeholder="Например, figure out" aria-label="Слово для поиска">
+            <a class="btn ghost sm" id="ox-go" href="https://www.oxfordlearnersdictionaries.com/" target="_blank" rel="noopener noreferrer">Искать ↗</a>
+          </div>
         </div>
       </div>
     </div>
+
+    <div id="pane-history" hidden>
+      <div class="hist-top">
+        <div class="chips glass" role="group" aria-label="Список">
+          <button class="chip" data-h="learned" aria-pressed="true">Выученные</button>
+          <button class="chip" data-h="remembered" aria-pressed="false">Запомненные</button>
+        </div>
+        <div class="hstats" id="hist-stats"></div>
+      </div>
+      <p class="note">Данные хранятся в вашем браузере и никуда не отправляются.</p>
+      <div class="hlist" id="hist-list"></div>
+      <div class="hclear"><button class="mini" id="hist-clear" type="button">Очистить историю</button></div>
+    </div>
+  </section>
   </main>
 
   <footer class="glass">
-    <span class="fl"><svg class="flag" aria-hidden="true"><use href="#flag" width="100%" height="100%"/></svg>lowk3y english</span>
+    <span class="fl"><svg class="flag" aria-hidden="true"><use href="#flag" width="100%" height="100%"/></svg>mattysen english</span>
     <span>Американский английский для русскоговорящих</span>
     <a href="https://www.tiktok.com/@lowk3y_stt?_r=1&amp;_t=ZS-9BJfPsSJ08S" target="_blank" rel="noopener noreferrer">TikTok @lowk3y_stt</a>
   </footer>
@@ -100,6 +129,11 @@
 
 <script src="../js/common.js"></script>
 <script src="../js/data/words.js"></script>
+<script src="../js/data/words-a1.js"></script>
+<script src="../js/data/words-a2.js"></script>
+<script src="../js/data/words-b1.js"></script>
+<script src="../js/data/words-b2.js"></script>
+<script src="../js/data/words-c1.js"></script>
 <script src="../js/cards.js"></script>
 </body>
 </html>
